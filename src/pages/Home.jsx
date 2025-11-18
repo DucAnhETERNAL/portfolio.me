@@ -3,6 +3,7 @@ import { ArrowRight, Github, Linkedin, Mail, Twitter, ExternalLink, Search, MapP
 import { Button, MatrixRain, Card } from '../components';
 import { SOCIAL_LINKS, ABOUT_INFO, SKILLS, PROJECTS, GITHUB_CONFIG } from '../constants';
 import useGitHubRepos from '../hooks/useGitHubRepos';
+import useGitHubLanguages from '../hooks/useGitHubLanguages';
 import { transformGitHubReposToProjects, getAllTagsFromProjects } from '../utils/githubUtils';
 
 /**
@@ -14,6 +15,14 @@ const Home = () => {
     GITHUB_CONFIG.username,
     GITHUB_CONFIG.reposLimit,
     true
+  );
+
+  // Fetch GitHub languages
+  const { languages: githubLanguages, loading: languagesLoading, error: languagesError } = useGitHubLanguages(
+    GITHUB_CONFIG.fetchLanguagesFromGitHub ? GITHUB_CONFIG.username : null,
+    GITHUB_CONFIG.languagesReposLimit || 100,
+    GITHUB_CONFIG.token || null,
+    GITHUB_CONFIG.includePrivateRepos || false
   );
 
   // Projects state
@@ -83,14 +92,10 @@ const Home = () => {
 
         <div className="container-custom relative z-10">
           <div className="text-center animate-fade-in">
-            {/* Greeting */}
-            <div className="inline-block mb-4 px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 border border-primary-300 dark:border-primary-800 rounded-full text-sm font-medium animate-slide-down">
-              👋 Chào mừng đến với portfolio của tôi
-            </div>
 
             {/* Main Heading */}
             <h1 className="mb-6 animate-slide-up">
-              <span className="block text-gray-900 dark:text-white mb-2">Xin chào, tôi là</span>
+              <span className="block text-gray-900 dark:text-white mb-2">Hi, I'm</span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-purple-400">
                 Full Stack Developer
               </span>
@@ -98,8 +103,8 @@ const Home = () => {
 
             {/* Description */}
             <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-600 dark:text-dark-300 mb-8 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              Tôi tạo ra những trải nghiệm web tuyệt vời bằng React, Node.js và các công nghệ hiện đại.
-              Đam mê về code sạch và thiết kế đẹp.
+              I build immersive web experiences with React, Node.js, and a modern toolchain,
+              always aiming for clean code and thoughtful design.
             </p>
 
             {/* CTA Buttons */}
@@ -109,7 +114,7 @@ const Home = () => {
                 document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
               }}>
                 <Button variant="primary" size="lg" className="group">
-                  Xem dự án
+                  View Projects
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
@@ -118,7 +123,7 @@ const Home = () => {
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
               }}>
                 <Button variant="outline" size="lg">
-                  Liên hệ với tôi
+                  Contact Me
                 </Button>
               </a>
             </div>
@@ -163,9 +168,9 @@ const Home = () => {
       <section id="features" className="section-padding bg-gray-50 dark:bg-dark-900 scroll-mt-24">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">Tại sao chọn tôi?</h2>
+            <h2 className="mb-4">Why work with me?</h2>
             <p className="text-gray-600 dark:text-dark-300 max-w-2xl mx-auto">
-              Tôi mang đến sự kết hợp hoàn hảo giữa kỹ năng kỹ thuật và tư duy sáng tạo
+              I bring a balance of technical depth, product sense, and visual craftsmanship.
             </p>
           </div>
 
@@ -175,9 +180,9 @@ const Home = () => {
               <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 border border-primary-300 dark:border-primary-800 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl">⚡</span>
               </div>
-              <h3 className="text-xl mb-3">Hiệu suất cao</h3>
+              <h3 className="text-xl mb-3">High performance</h3>
               <p className="text-gray-600 dark:text-dark-300">
-                Tối ưu hóa code để mang lại trải nghiệm người dùng nhanh và mượt mà
+                I obsess over shipping fast, smooth experiences with thoughtful optimizations.
               </p>
             </div>
 
@@ -186,9 +191,9 @@ const Home = () => {
               <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 border border-purple-300 dark:border-purple-800 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl">🎨</span>
               </div>
-              <h3 className="text-xl mb-3">Thiết kế đẹp</h3>
+              <h3 className="text-xl mb-3">Delightful design</h3>
               <p className="text-gray-600 dark:text-dark-300">
-                Giao diện hiện đại, responsive và thân thiện với người dùng
+                Modern, responsive interfaces crafted for clarity and consistency.
               </p>
             </div>
 
@@ -197,9 +202,9 @@ const Home = () => {
               <div className="w-16 h-16 bg-pink-100 dark:bg-pink-900/30 border border-pink-300 dark:border-pink-800 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl">🚀</span>
               </div>
-              <h3 className="text-xl mb-3">Code chất lượng</h3>
+              <h3 className="text-xl mb-3">Quality code</h3>
               <p className="text-gray-600 dark:text-dark-300">
-                Viết code sạch, dễ bảo trì và có khả năng mở rộng cao
+                Scalable, maintainable codebases built with clean architecture and testing.
               </p>
             </div>
           </div>
@@ -210,9 +215,9 @@ const Home = () => {
       <section id="about" className="bg-gradient-to-br from-gray-50 to-white dark:from-dark-900 dark:to-dark-950 py-16 border-y border-gray-200 dark:border-dark-800 scroll-mt-24">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4 animate-slide-up">Giới thiệu về tôi</h2>
+            <h2 className="mb-4 animate-slide-up">About me</h2>
             <p className="text-lg text-gray-600 dark:text-dark-300 max-w-2xl mx-auto animate-fade-in">
-              Tìm hiểu thêm về hành trình và kỹ năng của tôi
+              A quick snapshot of my journey, values, and capabilities.
             </p>
           </div>
         </div>
@@ -234,22 +239,6 @@ const Home = () => {
                 <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-purple-900/20 rounded-full -z-10 blur-xl"></div>
               </div>
 
-              {/* Contact Info Card */}
-              <div className="bg-white dark:bg-dark-800 border border-gray-200 dark:border-dark-700 rounded-xl shadow-lg p-6 space-y-4">
-                <h3 className="text-xl font-bold mb-4">Thông tin liên hệ</h3>
-                <div className="flex items-center gap-3 text-gray-700 dark:text-dark-300">
-                  <Mail className="w-5 h-5 text-primary-400" />
-                  <span>{ABOUT_INFO.email}</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-700 dark:text-dark-300">
-                  <MapPin className="w-5 h-5 text-primary-400" />
-                  <span>{ABOUT_INFO.location}</span>
-                </div>
-                <Button variant="outline" className="w-full mt-4">
-                  <Download className="w-4 h-4 mr-2" />
-                  Tải CV
-                </Button>
-              </div>
             </div>
 
             {/* Right Column - Description and Skills */}
@@ -264,48 +253,79 @@ const Home = () => {
                   {ABOUT_INFO.description}
                 </p>
                 <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
-                  Tôi luôn háo hức học hỏi công nghệ mới và áp dụng chúng vào các dự án thực tế.
-                  Mục tiêu của tôi là tạo ra những sản phẩm không chỉ đẹp mắt mà còn mang lại
-                  giá trị thực sự cho người dùng.
+                  I love experimenting with new technologies and bringing them into production when they
+                  make sense. My goal is to build experiences that feel beautiful, purposeful, and genuinely
+                  useful for people.
                 </p>
               </div>
 
               {/* Skills Section */}
               <div>
-                <h3 className="text-2xl font-bold mb-6">Kỹ năng</h3>
-                <div className="space-y-6">
-                  {SKILLS.map((skill) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between mb-2">
-                        <span className="font-medium text-gray-700 dark:text-dark-200">{skill.name}</span>
-                        <span className="text-gray-500 dark:text-dark-400">{skill.level}%</span>
-                      </div>
-                      <div className="h-3 bg-gray-200 dark:bg-dark-800 border border-gray-300 dark:border-dark-700 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-primary-500 to-purple-500 rounded-full transition-all duration-1000 ease-out"
-                          style={{ width: `${skill.level}%` }}
-                        ></div>
-                      </div>
+                <h3 className="text-2xl font-bold mb-6">Most Used Languages</h3>
+                {languagesLoading ? (
+                  <div className="flex items-center justify-center py-8">
+                    <Loader2 className="w-6 h-6 text-primary-400 animate-spin mr-2" />
+                    <span className="text-gray-600 dark:text-dark-300">Loading language data from GitHub...</span>
+                  </div>
+                ) : languagesError ? (
+                  <div className="text-center py-8">
+                    <p className="text-gray-600 dark:text-dark-300 mb-4">
+                      Unable to fetch data from GitHub. Falling back to sample data.
+                    </p>
+                    <div className="space-y-6">
+                      {SKILLS.map((skill) => (
+                        <div key={skill.name}>
+                          <div className="flex justify-between mb-2">
+                            <span className="font-medium text-gray-700 dark:text-dark-200">{skill.name}</span>
+                            <span className="text-gray-500 dark:text-dark-400">{skill.level}%</span>
+                          </div>
+                          <div className="h-3 bg-gray-200 dark:bg-dark-800 border border-gray-300 dark:border-dark-700 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-gradient-to-r from-primary-500 to-purple-500 rounded-full transition-all duration-1000 ease-out"
+                              style={{ width: `${skill.level}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ) : GITHUB_CONFIG.fetchLanguagesFromGitHub && githubLanguages.length > 0 ? (
+                  <div className="space-y-6">
+                    {githubLanguages.map((skill) => (
+                      <div key={skill.name}>
+                        <div className="flex justify-between mb-2">
+                          <span className="font-medium text-gray-700 dark:text-dark-200">{skill.name}</span>
+                          <span className="text-gray-500 dark:text-dark-400">{skill.percentage}%</span>
+                        </div>
+                        <div className="h-3 bg-gray-200 dark:bg-dark-800 border border-gray-300 dark:border-dark-700 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-gradient-to-r from-primary-500 to-purple-500 rounded-full transition-all duration-1000 ease-out"
+                            style={{ width: `${skill.percentage}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    {SKILLS.map((skill) => (
+                      <div key={skill.name}>
+                        <div className="flex justify-between mb-2">
+                          <span className="font-medium text-gray-700 dark:text-dark-200">{skill.name}</span>
+                          <span className="text-gray-500 dark:text-dark-400">{skill.level}%</span>
+                        </div>
+                        <div className="h-3 bg-gray-200 dark:bg-dark-800 border border-gray-300 dark:border-dark-700 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-gradient-to-r from-primary-500 to-purple-500 rounded-full transition-all duration-1000 ease-out"
+                            style={{ width: `${skill.level}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
-              {/* Experience Stats */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-white dark:bg-dark-800 border border-primary-600 dark:border-primary-800 rounded-lg">
-                  <div className="text-3xl font-bold text-primary-600 dark:text-primary-400">1</div>
-                  <div className="text-sm text-gray-600 dark:text-dark-300">Năm kinh nghiệm</div>
-                </div>
-                <div className="text-center p-4 bg-white dark:bg-dark-800 border border-purple-600 dark:border-purple-800 rounded-lg">
-                  <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">5</div>
-                  <div className="text-sm text-gray-600 dark:text-dark-300">Dự án hoàn thành</div>
-                </div>
-                <div className="text-center p-4 bg-white dark:bg-dark-800 border border-pink-600 dark:border-pink-800 rounded-lg">
-                  <div className="text-3xl font-bold text-pink-600 dark:text-pink-400">60%</div>
-                  <div className="text-sm text-gray-600 dark:text-dark-300">Khách hàng hài lòng</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -322,10 +342,10 @@ const Home = () => {
         <div className="container-custom relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Hành trình của tôi
+              Career milestones
             </h2>
             <p className="text-gray-600 dark:text-dark-300 text-lg max-w-2xl mx-auto">
-              Từ những dòng code đầu tiên đến hành trình trở thành Full Stack Developer và hướng tới DevOps
+              From the first lines of C to full-stack product builds and a DevOps-focused future.
             </p>
           </div>
 
@@ -348,12 +368,12 @@ const Home = () => {
                 <div className="md:ml-auto md:w-5/12 pl-20 md:pl-0 pt-2">
                   <div className="bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm border border-blue-300 dark:border-blue-800/50 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:shadow-blue-900/20 transition-all duration-300 group-hover:border-blue-600">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-semibold text-blue-400 bg-blue-900/30 px-3 py-1 rounded-full">Bước 1</span>
-                      <span className="text-xs text-gray-500 dark:text-dark-400">Khởi đầu</span>
+                      <span className="text-xs font-semibold text-blue-400 bg-blue-900/30 px-3 py-1 rounded-full">Phase 1</span>
+                      <span className="text-xs text-gray-500 dark:text-dark-400">Foundations</span>
                     </div>
-                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Bắt đầu với C</h3>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Starting with C</h3>
                     <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
-                      Khởi đầu hành trình lập trình với ngôn ngữ C - nền tảng vững chắc về cấu trúc dữ liệu, thuật toán và tư duy lập trình hệ thống.
+                      Learned low-level thinking with C, data structures, and algorithms—building the mental model for everything after.
                     </p>
                   </div>
                 </div>
@@ -372,12 +392,12 @@ const Home = () => {
                 <div className="md:mr-auto md:w-5/12 pl-20 md:pl-0 pt-2">
                   <div className="bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm border border-orange-300 dark:border-orange-800/50 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:shadow-orange-900/20 transition-all duration-300 group-hover:border-orange-600">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-semibold text-orange-600 dark:text-orange-400 bg-orange-100 dark:bg-orange-900/30 px-3 py-1 rounded-full">Bước 2</span>
-                      <span className="text-xs text-gray-500 dark:text-dark-400">Web Development</span>
+                      <span className="text-xs font-semibold text-orange-600 dark:text-orange-400 bg-orange-100 dark:bg-orange-900/30 px-3 py-1 rounded-full">Phase 2</span>
+                      <span className="text-xs text-gray-500 dark:text-dark-400">Web development</span>
                     </div>
                     <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Java JSP/Servlet</h3>
                     <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
-                      Chuyển sang phát triển web với Java, học JSP và Servlet để xây dựng các ứng dụng web động và hiểu về kiến trúc MVC trong Java EE.
+                      Built dynamic applications with Java, JSP, and Servlets, understanding MVC patterns inside the Java EE ecosystem.
                     </p>
                   </div>
                 </div>
@@ -396,12 +416,12 @@ const Home = () => {
                 <div className="md:ml-auto md:w-5/12 pl-20 md:pl-0 pt-2">
                   <div className="bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm border border-purple-300 dark:border-purple-800/50 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:shadow-purple-900/20 transition-all duration-300 group-hover:border-purple-600">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-semibold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full">Bước 3</span>
+                      <span className="text-xs font-semibold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full">Phase 3</span>
                       <span className="text-xs text-gray-500 dark:text-dark-400">Enterprise</span>
                     </div>
                     <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">C# / .NET</h3>
                     <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
-                      Phát triển chuyên sâu với C# và .NET Framework, xây dựng các ứng dụng enterprise với ASP.NET, Entity Framework và kiến trúc microservices.
+                      Dived deep into C#/.NET for enterprise apps, from ASP.NET to service-oriented and microservice architectures.
                     </p>
                   </div>
                 </div>
@@ -420,12 +440,12 @@ const Home = () => {
                 <div className="md:mr-auto md:w-5/12 pl-20 md:pl-0 pt-2">
                   <div className="bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm border border-cyan-300 dark:border-cyan-800/50 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:shadow-cyan-900/20 transition-all duration-300 group-hover:border-cyan-600">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 bg-cyan-100 dark:bg-cyan-900/30 px-3 py-1 rounded-full">Bước 4</span>
+                      <span className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 bg-cyan-100 dark:bg-cyan-900/30 px-3 py-1 rounded-full">Phase 4</span>
                       <span className="text-xs text-gray-500 dark:text-dark-400">Frontend</span>
                     </div>
                     <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">React</h3>
                     <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
-                      Chuyển sang frontend hiện đại với React, xây dựng các ứng dụng SPA động với hooks, context, và các thư viện ecosystem phong phú.
+                      Switched to modern frontend with React—building SPAs with hooks, context, and a rich ecosystem of tooling.
                     </p>
                   </div>
                 </div>
@@ -444,18 +464,18 @@ const Home = () => {
                 <div className="md:ml-auto md:w-5/12 pl-20 md:pl-0 pt-2">
                   <div className="bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm border border-green-300 dark:border-green-800/50 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:shadow-green-900/20 transition-all duration-300 group-hover:border-green-600">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-semibold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-3 py-1 rounded-full">Bước 5</span>
+                      <span className="text-xs font-semibold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-3 py-1 rounded-full">Phase 5</span>
                       <span className="text-xs text-gray-500 dark:text-dark-400">Backend</span>
                     </div>
                     <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Node.js</h3>
                     <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
-                      Hoàn thiện stack với Node.js, xây dựng RESTful APIs, real-time applications và tích hợp với các database như MongoDB, PostgreSQL.
+                      Completed the stack with Node.js, building REST APIs, real-time services, and integrations with MongoDB/PostgreSQL.
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Timeline Item 6 - DevOps (Mục tiêu) */}
+              {/* Timeline Item 6 - DevOps (Goal) */}
               <div className="relative flex flex-col md:flex-row items-start gap-6 group">
                 <div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 -translate-y-2">
                   <div className="relative">
@@ -470,12 +490,12 @@ const Home = () => {
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-full blur-2xl"></div>
                     <div className="relative">
                       <div className="flex items-center gap-2 mb-3">
-                        <span className="text-xs font-semibold text-pink-600 dark:text-pink-400 bg-pink-200 dark:bg-pink-900/40 px-3 py-1 rounded-full border border-pink-400 dark:border-pink-700/50">Mục tiêu</span>
-                        <span className="text-xs text-pink-600 dark:text-pink-300">Đang hướng tới</span>
+                        <span className="text-xs font-semibold text-pink-600 dark:text-pink-400 bg-pink-200 dark:bg-pink-900/40 px-3 py-1 rounded-full border border-pink-400 dark:border-pink-700/50">Next</span>
+                        <span className="text-xs text-pink-600 dark:text-pink-300">In progress</span>
                       </div>
                       <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">DevOps Engineer</h3>
                       <p className="text-gray-700 dark:text-dark-200 leading-relaxed">
-                        Mục tiêu tiếp theo: Trở thành DevOps Engineer với các kỹ năng về CI/CD, Docker, Kubernetes, cloud infrastructure (AWS/Azure), monitoring và automation.
+                        Current focus: leveling up in DevOps—CI/CD, Docker, Kubernetes, cloud infrastructure, monitoring, and automation.
                       </p>
                     </div>
                   </div>
@@ -490,9 +510,9 @@ const Home = () => {
       <section id="projects" className="bg-gradient-to-br from-gray-50 to-white dark:from-dark-900 dark:to-dark-950 py-16 border-y border-gray-200 dark:border-dark-800 scroll-mt-24">
         <div className="container-custom">
           <div className="text-center">
-            <h2 className="mb-4 animate-slide-up">Dự án của tôi</h2>
+            <h2 className="mb-4 animate-slide-up">Selected work</h2>
             <p className="text-lg text-gray-600 dark:text-dark-300 max-w-2xl mx-auto animate-fade-in">
-              Khám phá các dự án tôi đã xây dựng với đam mê và sự cống hiến
+              A mix of personal experiments and production projects built with care.
             </p>
           </div>
         </div>
@@ -507,7 +527,7 @@ const Home = () => {
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-dark-400 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Tìm kiếm dự án..."
+                placeholder="Search projects..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 bg-white dark:bg-dark-800 border-2 border-gray-300 dark:border-dark-700 text-gray-900 dark:text-white rounded-lg focus:border-primary-500 focus:outline-none transition-colors"
@@ -529,7 +549,7 @@ const Home = () => {
                   }
                 `}
               >
-                {tag === 'all' ? 'Tất cả' : tag}
+                {tag === 'all' ? 'All' : tag}
               </button>
             ))}
           </div>
@@ -538,15 +558,15 @@ const Home = () => {
           {githubLoading && GITHUB_CONFIG.fetchFromGitHub ? (
             <div className="text-center py-16">
               <Loader2 className="w-12 h-12 text-primary-400 animate-spin mx-auto mb-4" />
-              <p className="text-gray-600 dark:text-dark-300">Đang tải dự án từ GitHub...</p>
+              <p className="text-gray-600 dark:text-dark-300">Loading repositories from GitHub...</p>
             </div>
           ) : githubError && GITHUB_CONFIG.fetchFromGitHub ? (
             <div className="text-center py-16">
               <div className="text-6xl mb-4">⚠️</div>
-              <h3 className="text-2xl mb-2">Không thể tải dự án từ GitHub</h3>
+              <h3 className="text-2xl mb-2">Unable to load GitHub projects</h3>
               <p className="text-gray-600 dark:text-dark-300 mb-4">{githubError}</p>
               <p className="text-sm text-gray-500 dark:text-dark-400">
-                Đang sử dụng dữ liệu mẫu. Kiểm tra GITHUB_CONFIG trong constants/index.js
+                Showing fallback data instead. Check GITHUB_CONFIG inside constants/index.js.
               </p>
             </div>
           ) : filteredProjects.length > 0 ? (
@@ -625,9 +645,9 @@ const Home = () => {
           ) : (
             <div className="text-center py-16">
               <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-2xl mb-2">Không tìm thấy dự án</h3>
+              <h3 className="text-2xl mb-2">No projects matched</h3>
               <p className="text-gray-600 dark:text-dark-300">
-                Thử tìm kiếm với từ khóa khác hoặc chọn tag khác
+                Try a different keyword or filter.
               </p>
             </div>
           )}
@@ -637,10 +657,9 @@ const Home = () => {
       {/* Projects CTA */}
       <section className="bg-gradient-to-r from-primary-600 to-purple-600 text-white dark:text-white py-16">
         <div className="container-custom text-center">
-          <h2 className="mb-4">Có ý tưởng dự án?</h2>
+          <h2 className="mb-4">Have an idea in mind?</h2>
           <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-            Hãy liên hệ với tôi để bàn luận về dự án của bạn.
-            Tôi luôn sẵn sàng đón nhận những thách thức mới!
+            I'd love to hear about your product goals and explore how we can bring them to life.
           </p>
           <a href="#contact" onClick={(e) => {
             e.preventDefault();
@@ -651,7 +670,7 @@ const Home = () => {
               size="lg"
               className="bg-white text-primary-600 hover:bg-gray-50 dark:hover:bg-dark-50"
             >
-              Liên hệ ngay
+              Let's talk
             </Button>
           </a>
         </div>
@@ -661,9 +680,9 @@ const Home = () => {
       <section id="contact" className="bg-gradient-to-br from-gray-50 to-white dark:from-dark-900 dark:to-dark-950 py-16 border-y border-gray-200 dark:border-dark-800 scroll-mt-24">
         <div className="container-custom">
           <div className="text-center">
-            <h2 className="mb-4 animate-slide-up">Liên hệ với tôi</h2>
+            <h2 className="mb-4 animate-slide-up">Get in touch</h2>
             <p className="text-lg text-gray-600 dark:text-dark-300 max-w-2xl mx-auto animate-fade-in">
-              Hãy kết nối với tôi! Tôi luôn sẵn sàng nghe về các cơ hội và dự án mới
+              Whether it's a project, collaboration, or just a hello—I'd love to connect.
             </p>
           </div>
         </div>
@@ -676,9 +695,9 @@ const Home = () => {
             {/* Left Column - Contact Info */}
             <div className="space-y-6">
               <div>
-                <h3 className="mb-6">Thông tin liên hệ</h3>
+                <h3 className="mb-6">Contact details</h3>
                 <p className="text-gray-600 dark:text-dark-300 mb-8">
-                  Bạn có câu hỏi hoặc muốn hợp tác? Hãy điền vào form hoặc liên hệ trực tiếp qua các phương thức dưới đây.
+                  Need a hand or want to collaborate? Send a note or reach out through any of the channels below.
                 </p>
               </div>
 
@@ -707,7 +726,7 @@ const Home = () => {
                       <MapPin className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold mb-1">Địa chỉ</h3>
+                      <h3 className="text-lg font-semibold mb-1">Location</h3>
                       <p className="text-gray-600 dark:text-dark-300">{ABOUT_INFO.location}</p>
                     </div>
                   </div>
@@ -716,7 +735,7 @@ const Home = () => {
 
               {/* Social Links */}
               <div>
-                <h3 className="text-lg font-semibold mb-4">Kết nối qua mạng xã hội</h3>
+                <h3 className="text-lg font-semibold mb-4">Connect on social</h3>
                 <div className="flex gap-4">
                   {SOCIAL_LINKS.map((social) => {
                     const iconMap = {
@@ -757,7 +776,7 @@ const Home = () => {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-dark-200 mb-2">
-                        Tên của bạn *
+                        Your name *
                       </label>
                       <input
                         type="text"
@@ -767,7 +786,7 @@ const Home = () => {
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-2 border-gray-300 dark:border-dark-700 text-gray-900 dark:text-white rounded-lg focus:border-primary-500 focus:outline-none transition-colors"
-                        placeholder="Nhập tên của bạn"
+                        placeholder="Enter your name"
                       />
                     </div>
 
@@ -789,7 +808,7 @@ const Home = () => {
 
                     <div>
                       <label htmlFor="subject" className="block text-sm font-medium text-dark-200 mb-2">
-                        Chủ đề *
+                        Subject *
                       </label>
                       <input
                         type="text"
@@ -799,13 +818,13 @@ const Home = () => {
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-2 border-gray-300 dark:border-dark-700 text-gray-900 dark:text-white rounded-lg focus:border-primary-500 focus:outline-none transition-colors"
-                        placeholder="Chủ đề của tin nhắn"
+                        placeholder="What is this about?"
                       />
                     </div>
 
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-dark-200 mb-2">
-                        Tin nhắn *
+                        Message *
                       </label>
                       <textarea
                         id="message"
@@ -815,7 +834,7 @@ const Home = () => {
                         required
                         rows={6}
                         className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-2 border-gray-300 dark:border-dark-700 text-gray-900 dark:text-white rounded-lg focus:border-primary-500 focus:outline-none transition-colors resize-none"
-                        placeholder="Nội dung tin nhắn của bạn..."
+                        placeholder="Let me know how I can help..."
                       />
                     </div>
 
@@ -826,17 +845,17 @@ const Home = () => {
                       size="lg"
                     >
                       <Send className="w-5 h-5 mr-2" />
-                      Gửi tin nhắn
+                      Send message
                     </Button>
                   </form>
                 ) : (
                   <div className="text-center py-12 animate-scale-in">
                     <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
                     <h3 className="text-2xl font-bold mb-2 text-green-400">
-                      Gửi thành công!
+                      Message sent!
                     </h3>
                     <p className="text-gray-600 dark:text-dark-300">
-                      Cảm ơn bạn đã liên hệ. Tôi sẽ phản hồi sớm nhất có thể!
+                      Thanks for reaching out—I’ll reply as soon as possible.
                     </p>
                   </div>
                 )}
@@ -853,7 +872,7 @@ const Home = () => {
             <div className="text-center">
               <div className="text-6xl mb-4">🗺️</div>
               <p className="text-gray-600 dark:text-dark-300">
-                Bạn có thể thêm Google Maps hoặc map tùy chỉnh ở đây
+                You can embed Google Maps or your preferred map component here.
               </p>
             </div>
           </div>

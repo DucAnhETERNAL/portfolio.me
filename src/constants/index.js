@@ -68,6 +68,14 @@ export const ABOUT_INFO = {
 export const GITHUB_CONFIG = {
     username: 'DucAnhETERNAL', // Your GitHub username
     fetchFromGitHub: true, // Set to false to use static PROJECTS data
-    reposLimit: 12, // Maximum number of repos to fetch
+    fetchLanguagesFromGitHub: true, // Set to false to use static SKILLS data
+    reposLimit: 12, // Maximum number of repos to fetch for projects
+    languagesReposLimit: 100, // Maximum number of repos to analyze for languages (set higher for accuracy)
+    // GitHub Personal Access Token (optional)
+    // Required to access private repos
+    // Get token from: https://github.com/settings/tokens
+    // Permissions needed: repo (for private repos)
+    token: import.meta.env.VITE_GITHUB_TOKEN || null,
+    includePrivateRepos: true, // Set to true to include private repos (requires valid token with 'repo' scope)
 };
 
