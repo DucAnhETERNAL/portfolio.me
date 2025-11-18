@@ -1,33 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar, Footer } from './components';
-import { Home, About, Projects, Contact } from './pages';
+import { Home } from './pages';
 
 /**
  * Main App Component
- * Handles routing and layout structure
+ * Single page scroll layout
  */
 function App() {
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen">
-        {/* Navigation */}
-        <Navbar />
+    <div className="flex flex-col min-h-screen">
+      {/* Navigation */}
+      <Navbar />
 
-        {/* Main Content */}
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
+      {/* Main Content - Single Page */}
+      <main className="flex-grow">
+        <Home />
+      </main>
 
-        {/* Footer */}
-        <Footer />
-      </div>
-    </Router>
+      {/* Footer */}
+      <Footer />
+    </div>
   );
 }
 

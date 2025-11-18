@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Github, Linkedin, Twitter, Mail, Heart, Code } from 'lucide-react';
 import { NAV_LINKS, SOCIAL_LINKS } from '../constants';
 
@@ -15,6 +14,18 @@ const Footer = () => {
     Linkedin: Linkedin,
     Twitter: Twitter,
     Mail: Mail,
+  };
+
+  // Smooth scroll to section
+  const scrollToSection = (sectionId) => {
+    if (sectionId === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   };
 
   return (
@@ -38,13 +49,13 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Liên kết nhanh</h3>
             <ul className="space-y-2">
               {NAV_LINKS.map((link) => (
-                <li key={link.path}>
-                  <Link 
-                    to={link.path}
-                    className="text-dark-300 hover:text-primary-400 transition-colors"
+                <li key={link.section}>
+                  <button
+                    onClick={() => scrollToSection(link.section)}
+                    className="text-dark-300 hover:text-primary-400 transition-colors text-left"
                   >
                     {link.name}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>

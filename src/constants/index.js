@@ -1,9 +1,9 @@
-// Navigation Links
+// Navigation Links - For single page scroll
 export const NAV_LINKS = [
-    { name: 'Trang chủ', path: '/' },
-    { name: 'Giới thiệu', path: '/about' },
-    { name: 'Dự án', path: '/projects' },
-    { name: 'Liên hệ', path: '/contact' },
+    { name: 'Trang chủ', section: 'hero' },
+    { name: 'Giới thiệu', section: 'about' },
+    { name: 'Dự án', section: 'projects' },
+    { name: 'Liên hệ', section: 'contact' },
 ];
 
 // Social Media Links
@@ -62,5 +62,12 @@ export const ABOUT_INFO = {
   Với kinh nghiệm trong việc xây dựng các ứng dụng web hiện đại, tôi chuyên về React, Node.js và các công nghệ web mới nhất.`,
     email: 'nganh81084@gmail.com',
     location: 'Việt Nam',
+};
+
+// GitHub Configuration
+export const GITHUB_CONFIG = {
+    username: 'DucAnhETERNAL', // Your GitHub username
+    fetchFromGitHub: true, // Set to false to use static PROJECTS data
+    reposLimit: 12, // Maximum number of repos to fetch
 };
 
