@@ -11,11 +11,16 @@
   }
 
   body {
-    @apply m-0 font-sans antialiased text-dark-50 bg-dark-950;
+    @apply m-0 font-sans antialiased text-gray-900 dark:text-dark-50 bg-white dark:bg-dark-950;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-bold leading-tight text-white;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold leading-tight text-gray-900 dark:text-white;
   }
 
   h1 {

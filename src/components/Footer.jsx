@@ -29,7 +29,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-dark-900 text-white">
+    <footer className="bg-gray-50 dark:bg-dark-900 text-gray-900 dark:text-white">
       {/* Main Footer Content */}
       <div className="container-custom py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -39,7 +39,7 @@ const Footer = () => {
               <Code className="w-8 h-8 text-primary-400" />
               <span className="text-2xl font-bold">Portfolio</span>
             </div>
-            <p className="text-dark-300">
+            <p className="text-gray-600 dark:text-dark-300">
               Xây dựng những trải nghiệm web tuyệt vời với đam mê và sự sáng tạo.
             </p>
           </div>
@@ -52,7 +52,7 @@ const Footer = () => {
                 <li key={link.section}>
                   <button
                     onClick={() => scrollToSection(link.section)}
-                    className="text-dark-300 hover:text-primary-400 transition-colors text-left"
+                    className="text-gray-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-left"
                   >
                     {link.name}
                   </button>
@@ -73,7 +73,7 @@ const Footer = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-dark-800 flex items-center justify-center hover:bg-primary-600 transition-all duration-300 hover:scale-110"
+                    className="w-10 h-10 rounded-full bg-white dark:bg-dark-800 border border-gray-200 dark:border-transparent flex items-center justify-center hover:bg-primary-600 dark:hover:bg-primary-600 hover:text-white transition-all duration-300 hover:scale-110 text-gray-700 dark:text-gray-300"
                     aria-label={social.name}
                   >
                     <IconComponent className="w-5 h-5" />
@@ -86,9 +86,9 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-dark-800">
+      <div className="border-t border-gray-200 dark:border-dark-800">
         <div className="container-custom py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-dark-400">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-dark-400">
             <p>
               © {currentYear} Portfolio. All rights reserved.
             </p>

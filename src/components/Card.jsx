@@ -10,8 +10,8 @@ const Card = ({ children, className = '', hover = true }) => {
   return (
     <div
       className={`
-        bg-dark-800 border border-dark-700 rounded-xl shadow-lg overflow-hidden 
-        ${hover ? 'hover:shadow-2xl hover:shadow-primary-900/20 hover:-translate-y-1 transition-all duration-300' : ''}
+        bg-white dark:bg-dark-800 border border-gray-200 dark:border-dark-700 rounded-xl shadow-lg overflow-hidden 
+        ${hover ? 'hover:shadow-2xl hover:shadow-primary-900/20 dark:hover:shadow-primary-900/20 hover:-translate-y-1 transition-all duration-300' : ''}
         ${className}
       `}
     >
