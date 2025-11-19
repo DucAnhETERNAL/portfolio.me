@@ -10,7 +10,7 @@ export const NAV_LINKS = [
 export const SOCIAL_LINKS = [
     { name: 'GitHub', url: 'https://github.com/DucAnhETERNAL', icon: 'Github' },
     { name: 'LinkedIn', url: 'https://linkedin.com', icon: 'Linkedin' },
-    { name: 'Twitter', url: 'https://twitter.com', icon: 'Twitter' },
+    { name: 'X', url: 'https://twitter.com', icon: 'Twitter' },
     { name: 'Email', url: 'mailto:nganh81084@example.com', icon: 'Mail' },
 ];
 

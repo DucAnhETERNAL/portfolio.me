@@ -1,10 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Github, Linkedin, Mail, Twitter, ExternalLink, Search, MapPin, Download, Send, CheckCircle, Loader2 } from 'lucide-react';
-import { Button, MatrixRain, Card } from '../components';
+import { ArrowRight, Github, Linkedin, Mail, ExternalLink, Search, MapPin, Download, Send, CheckCircle, Loader2 } from 'lucide-react';
+import { Button, MatrixRain, FloatingLines, LetterGlitch, Card } from '../components';
 import { SOCIAL_LINKS, ABOUT_INFO, SKILLS, PROJECTS, GITHUB_CONFIG } from '../constants';
 import useGitHubRepos from '../hooks/useGitHubRepos';
 import useGitHubLanguages from '../hooks/useGitHubLanguages';
 import { transformGitHubReposToProjects, getAllTagsFromProjects } from '../utils/githubUtils';
+
+// Custom X (Twitter) Icon Component
+const XIcon = ({ className }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 /**
  * Home Page - Single page scroll with all sections
@@ -88,8 +103,11 @@ const Home = () => {
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center bg-white dark:bg-dark-950 overflow-hidden">
         {/* Matrix Rain Background */}
-        <MatrixRain speed={50} density={0.96} fontSize={14} />
-
+        {/* <MatrixRain speed={50} density={0.96} fontSize={14} /> */}
+        {/* FloatingLines Background */}
+        {/* <FloatingLines enabledWaves={['top', 'middle', 'bottom']} lineCount={[10, 15, 20]} lineDistance={[8, 6, 4]} bendRadius={5.0} bendStrength={-0.5} interactive={true} parallax={true} /> */}
+        {/* LetterGlitch Background */}
+        <LetterGlitch glitchSpeed={50} centerVignette={true} outerVignette={false} smooth={true} />
         <div className="container-custom relative z-10">
           <div className="text-center animate-fade-in">
 
@@ -100,12 +118,6 @@ const Home = () => {
                 Full Stack Developer
               </span>
             </h1>
-
-            {/* Description */}
-            <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-600 dark:text-dark-300 mb-8 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              I build immersive web experiences with React, Node.js, and a modern toolchain,
-              always aiming for clean code and thoughtful design.
-            </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center justify-center gap-4 mb-12 animate-slide-up" style={{ animationDelay: '0.4s' }}>
@@ -134,22 +146,36 @@ const Home = () => {
                 const iconMap = {
                   Github: Github,
                   Linkedin: Linkedin,
-                  Twitter: Twitter,
+                  Twitter: XIcon,
                   Mail: Mail,
                 };
                 const IconComponent = iconMap[social.icon];
+                const displayText = social.icon === 'Mail'
+                  ? ABOUT_INFO.email
+                  : social.url.replace(/^https?:\/\//, '').replace(/^mailto:/, '');
 
                 return (
-                  <a
+                  <div
                     key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full bg-white dark:bg-dark-800 border border-gray-200 dark:border-dark-700 shadow-lg flex items-center justify-center text-gray-700 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 hover:border-primary-600 hover:shadow-xl hover:scale-110 transition-all duration-300"
-                    aria-label={social.name}
+                    className="relative group"
                   >
-                    <IconComponent className="w-5 h-5" />
-                  </a>
+                    <a
+                      href={social.url}
+                      target={social.icon === 'Mail' ? '_self' : '_blank'}
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 rounded-full bg-white dark:bg-dark-800 border border-gray-200 dark:border-dark-700 shadow-lg flex items-center justify-center text-gray-700 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 hover:border-primary-600 hover:shadow-xl hover:scale-110 transition-all duration-300"
+                      aria-label={social.name}
+                    >
+                      <IconComponent className="w-5 h-5" />
+                    </a>
+                    {/* Expandable tooltip */}
+                    <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 pointer-events-none whitespace-nowrap z-50">
+                      <div className="bg-gray-900 dark:bg-dark-800 text-white dark:text-dark-100 text-xs px-3 py-2 rounded-lg shadow-xl border border-gray-700 dark:border-dark-600">
+                        {displayText}
+                        <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-dark-800"></div>
+                      </div>
+                    </div>
+                  </div>
                 );
               })}
             </div>
@@ -741,21 +767,36 @@ const Home = () => {
                     const iconMap = {
                       Github: Github,
                       Linkedin: Linkedin,
-                      Twitter: Twitter,
+                      Twitter: XIcon,
                       Mail: Mail,
                     };
                     const IconComponent = iconMap[social.icon];
+                    const displayText = social.icon === 'Mail'
+                      ? ABOUT_INFO.email
+                      : social.url.replace(/^https?:\/\//, '').replace(/^mailto:/, '');
+
                     return (
-                      <a
+                      <div
                         key={social.name}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-purple-500 flex items-center justify-center text-white hover:scale-110 hover:shadow-lg transition-all duration-300"
-                        aria-label={social.name}
+                        className="relative group"
                       >
-                        <IconComponent className="w-5 h-5" />
-                      </a>
+                        <a
+                          href={social.url}
+                          target={social.icon === 'Mail' ? '_self' : '_blank'}
+                          rel="noopener noreferrer"
+                          className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-purple-500 flex items-center justify-center text-white hover:scale-110 hover:shadow-lg transition-all duration-300"
+                          aria-label={social.name}
+                        >
+                          <IconComponent className="w-5 h-5" />
+                        </a>
+                        {/* Expandable tooltip */}
+                        <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 pointer-events-none whitespace-nowrap z-50">
+                          <div className="bg-gray-900 dark:bg-dark-800 text-white dark:text-dark-100 text-xs px-3 py-2 rounded-lg shadow-xl border border-gray-700 dark:border-dark-600">
+                            {displayText}
+                            <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900 dark:border-t-dark-800"></div>
+                          </div>
+                        </div>
+                      </div>
                     );
                   })}
                 </div>
