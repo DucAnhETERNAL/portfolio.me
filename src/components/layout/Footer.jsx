@@ -1,0 +1,121 @@
+import React from 'react';
+import { Github, Linkedin, Mail, Heart, Code } from 'lucide-react';
+import { NAV_LINKS, SOCIAL_LINKS } from '../../constants';
+
+// Custom X (Twitter) Icon Component
+const XIcon = ({ className }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+/**
+ * Footer Component - Site footer with links and social media
+ */
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  // Icon mapping
+  const iconMap = {
+    Github: Github,
+    Linkedin: Linkedin,
+    Twitter: XIcon,
+    Mail: Mail,
+  };
+
+  // Smooth scroll to section
+  const scrollToSection = (sectionId) => {
+    if (sectionId === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
+  return (
+    <footer className="bg-gray-50 dark:bg-dark-900 text-gray-900 dark:text-white">
+      {/* Main Footer Content */}
+      <div className="container-custom py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Brand Section */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <Code className="w-8 h-8 text-primary-400" />
+              <span className="text-2xl font-bold">Portfolio</span>
+            </div>
+            <p className="text-gray-600 dark:text-dark-300">
+              Xây dựng những trải nghiệm web tuyệt vời với đam mê và sự sáng tạo.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Liên kết nhanh</h3>
+            <ul className="space-y-2">
+              {NAV_LINKS.map((link) => (
+                <li key={link.section}>
+                  <button
+                    onClick={() => scrollToSection(link.section)}
+                    className="text-gray-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors text-left"
+                  >
+                    {link.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Social Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Kết nối</h3>
+            <div className="flex gap-4">
+              {SOCIAL_LINKS.map((social) => {
+                const IconComponent = iconMap[social.icon];
+                return (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-white dark:bg-dark-800 border border-gray-200 dark:border-transparent flex items-center justify-center hover:bg-primary-600 dark:hover:bg-primary-600 hover:text-white transition-all duration-300 hover:scale-110 text-gray-700 dark:text-gray-300"
+                    aria-label={social.name}
+                  >
+                    <IconComponent className="w-5 h-5" />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-200 dark:border-dark-800">
+        <div className="container-custom py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-dark-400">
+            <p>
+              © {currentYear} Portfolio. All rights reserved.
+            </p>
+            <p className="flex items-center gap-2">
+              Made with <Heart className="w-4 h-4 text-red-500 fill-current" /> using React & Tailwind CSS
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
+

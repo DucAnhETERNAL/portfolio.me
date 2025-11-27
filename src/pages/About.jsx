@@ -2,20 +2,23 @@ import React from 'react';
 import { Mail, MapPin, Download } from 'lucide-react';
 import { Button } from '../components';
 import { ABOUT_INFO, SKILLS } from '../constants';
+import { useI18n } from '../contexts/I18nContext';
 
 /**
  * About Page - Personal information and skills
  */
 const About = () => {
+  const { t } = useI18n();
+
   return (
     <div className="min-h-screen pt-24 pb-16">
       {/* Header */}
       <section className="bg-gradient-to-br from-dark-900 to-dark-950 py-16 border-b border-dark-800">
         <div className="container-custom">
           <div className="text-center">
-            <h1 className="mb-4 animate-slide-up">Giới thiệu về tôi</h1>
+            <h1 className="mb-4 animate-slide-up">{t('about.title')}</h1>
             <p className="text-lg text-dark-300 max-w-2xl mx-auto animate-fade-in">
-              Tìm hiểu thêm về hành trình và kỹ năng của tôi
+              {t('about.subtitle')}
             </p>
           </div>
         </div>
@@ -29,8 +32,17 @@ const About = () => {
             <div className="space-y-6">
               {/* Profile Image */}
               <div className="relative">
-                <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary-900/30 to-purple-900/30 border border-dark-700 flex items-center justify-center overflow-hidden">
-                  <div className="text-9xl">👨‍💻</div>
+                <div className="rounded-2xl bg-gradient-to-br from-primary-900/30 to-purple-900/30 border border-dark-700 flex items-center justify-center overflow-hidden">
+                  <img
+                    src="/profile.jpg"
+                    alt={ABOUT_INFO.name}
+                    className="w-full h-auto object-contain rounded-2xl"
+                    loading="eager"
+                    onError={(e) => {
+                      console.error('Failed to load /profile.jpg, trying AnhND-DE170755.JPG');
+                      e.target.src = '/AnhND-DE170755.JPG';
+                    }}
+                  />
                 </div>
                 {/* Decorative elements */}
                 <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary-900/20 rounded-full -z-10 blur-xl"></div>
@@ -39,7 +51,7 @@ const About = () => {
 
               {/* Contact Info Card */}
               <div className="bg-dark-800 border border-dark-700 rounded-xl shadow-lg p-6 space-y-4">
-                <h3 className="text-xl font-bold mb-4">Thông tin liên hệ</h3>
+                <h3 className="text-xl font-bold mb-4">{t('about.contactInfo')}</h3>
                 <div className="flex items-center gap-3 text-dark-300">
                   <Mail className="w-5 h-5 text-primary-400" />
                   <span>{ABOUT_INFO.email}</span>
@@ -50,7 +62,7 @@ const About = () => {
                 </div>
                 <Button variant="outline" className="w-full mt-4">
                   <Download className="w-4 h-4 mr-2" />
-                  Tải CV
+                  {t('about.downloadCV')}
                 </Button>
               </div>
             </div>
@@ -67,15 +79,13 @@ const About = () => {
                   {ABOUT_INFO.description}
                 </p>
                 <p className="text-dark-300 leading-relaxed">
-                  Tôi luôn háo hức học hỏi công nghệ mới và áp dụng chúng vào các dự án thực tế.
-                  Mục tiêu của tôi là tạo ra những sản phẩm không chỉ đẹp mắt mà còn mang lại
-                  giá trị thực sự cho người dùng.
+                  {t('about.description')}
                 </p>
               </div>
 
               {/* Skills Section */}
               <div>
-                <h3 className="text-2xl font-bold mb-6">Kỹ năng</h3>
+                <h3 className="text-2xl font-bold mb-6">{t('about.skills')}</h3>
                 <div className="space-y-6">
                   {SKILLS.map((skill) => (
                     <div key={skill.name}>
@@ -98,15 +108,15 @@ const About = () => {
               <div className="grid grid-cols-3 gap-4">
                 <div className="text-center p-4 bg-dark-800 border border-primary-800 rounded-lg">
                   <div className="text-3xl font-bold text-primary-400">1</div>
-                  <div className="text-sm text-dark-300">Năm kinh nghiệm</div>
+                  <div className="text-sm text-dark-300">{t('about.experience.years')}</div>
                 </div>
                 <div className="text-center p-4 bg-dark-800 border border-purple-800 rounded-lg">
                   <div className="text-3xl font-bold text-purple-400">5</div>
-                  <div className="text-sm text-dark-300">Dự án hoàn thành</div>
+                  <div className="text-sm text-dark-300">{t('about.experience.projects')}</div>
                 </div>
                 <div className="text-center p-4 bg-dark-800 border border-pink-800 rounded-lg">
                   <div className="text-3xl font-bold text-pink-400">60%</div>
-                  <div className="text-sm text-dark-300">Khách hàng hài lòng</div>
+                  <div className="text-sm text-dark-300">{t('about.experience.satisfied')}</div>
                 </div>
               </div>
             </div>
@@ -117,7 +127,7 @@ const About = () => {
       {/* Background Section */}
       <section className="bg-dark-900 text-white section-padding">
         <div className="container-custom">
-          <h2 className="text-center mb-12">Hành trình của tôi</h2>
+          <h2 className="text-center mb-12">{t('about.journey.title')}</h2>
           <div className="max-w-3xl mx-auto space-y-8">
             {/* Timeline Item 1 */}
             <div className="flex gap-6">
@@ -128,9 +138,9 @@ const About = () => {
                 <div className="w-0.5 h-full bg-dark-700 mt-2"></div>
               </div>
               <div className="pb-8">
-                <h3 className="text-xl mb-2">Bắt đầu với Web Development</h3>
+                <h3 className="text-xl mb-2">{t('about.journey.phase1.title')}</h3>
                 <p className="text-dark-300">
-                  Khám phá thế giới lập trình web, học HTML, CSS và JavaScript cơ bản
+                  {t('about.journey.phase1.description')}
                 </p>
               </div>
             </div>
@@ -144,9 +154,9 @@ const About = () => {
                 <div className="w-0.5 h-full bg-dark-700 mt-2"></div>
               </div>
               <div className="pb-8">
-                <h3 className="text-xl mb-2">Chuyên sâu React & Node.js</h3>
+                <h3 className="text-xl mb-2">{t('about.journey.phase2.title')}</h3>
                 <p className="text-dark-300">
-                  Tập trung vào React để xây dựng UI và Node.js cho backend development
+                  {t('about.journey.phase2.description')}
                 </p>
               </div>
             </div>
@@ -159,9 +169,9 @@ const About = () => {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl mb-2">Full Stack Developer</h3>
+                <h3 className="text-xl mb-2">{t('about.journey.phase3.title')}</h3>
                 <p className="text-dark-300">
-                  Hiện tại làm việc với các dự án full-stack, từ thiết kế đến triển khai
+                  {t('about.journey.phase3.description')}
                 </p>
               </div>
             </div>

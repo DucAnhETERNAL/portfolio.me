@@ -1,0 +1,197 @@
+{
+    "nav": {
+        "home": "Trang chủ",
+        "about": "Giới thiệu",
+        "projects": "Dự án",
+        "contact": "Liên hệ"
+    },
+    "home": {
+        "hero": {
+            "greeting": "Xin chào, tôi là",
+            "title": "Full Stack Developer",
+            "viewProjects": "Xem dự án",
+            "contactMe": "Liên hệ"
+        },
+        "features": {
+            "title": "Tại sao làm việc với tôi?",
+            "subtitle": "Tôi mang đến sự cân bằng giữa chiều sâu kỹ thuật, cảm nhận sản phẩm và tay nghề thị giác.",
+            "performance": {
+                "title": "Hiệu suất cao",
+                "description": "Tôi luôn tập trung vào việc tạo ra những trải nghiệm nhanh, mượt mà với các tối ưu hóa được suy nghĩ kỹ lưỡng."
+            },
+            "design": {
+                "title": "Thiết kế tuyệt vời",
+                "description": "Giao diện hiện đại, responsive được chế tác cho sự rõ ràng và nhất quán."
+            },
+            "quality": {
+                "title": "Code chất lượng",
+                "description": "Codebase có thể mở rộng, dễ bảo trì được xây dựng với kiến trúc sạch và testing."
+            }
+        },
+        "about": {
+            "title": "Về tôi",
+            "subtitle": "Một cái nhìn nhanh về hành trình, giá trị và khả năng của tôi.",
+            "mostUsedLanguages": "Ngôn ngữ sử dụng nhiều nhất",
+            "loadingLanguages": "Đang tải dữ liệu ngôn ngữ từ GitHub...",
+            "unableToFetch": "Không thể lấy dữ liệu từ GitHub. Đang sử dụng dữ liệu mẫu.",
+            "description": "Tôi thích thử nghiệm các công nghệ mới và đưa chúng vào sản xuất khi chúng có ý nghĩa. Mục tiêu của tôi là xây dựng những trải nghiệm cảm thấy đẹp, có mục đích và thực sự hữu ích cho mọi người."
+        },
+        "timeline": {
+            "title": "Các cột mốc sự nghiệp",
+            "subtitle": "Từ những dòng code C đầu tiên đến các sản phẩm full-stack và tương lai tập trung vào DevOps.",
+            "phase1": {
+                "label": "Giai đoạn 1",
+                "tag": "Nền tảng",
+                "title": "Bắt đầu với C",
+                "description": "Học tư duy cấp thấp với C, cấu trúc dữ liệu và thuật toán—xây dựng mô hình tinh thần cho mọi thứ sau này."
+            },
+            "phase2": {
+                "label": "Giai đoạn 2",
+                "tag": "Phát triển web",
+                "title": "Java JSP/Servlet",
+                "description": "Xây dựng các ứng dụng động với Java, JSP và Servlets, hiểu các mẫu MVC trong hệ sinh thái Java EE."
+            },
+            "phase3": {
+                "label": "Giai đoạn 3",
+                "tag": "Doanh nghiệp",
+                "title": "C# / .NET",
+                "description": "Đi sâu vào C#/.NET cho các ứng dụng doanh nghiệp, từ ASP.NET đến kiến trúc hướng dịch vụ và microservice."
+            },
+            "phase4": {
+                "label": "Giai đoạn 4",
+                "tag": "Frontend",
+                "title": "React",
+                "description": "Chuyển sang frontend hiện đại với React—xây dựng SPAs với hooks, context và hệ sinh thái công cụ phong phú."
+            },
+            "phase5": {
+                "label": "Giai đoạn 5",
+                "tag": "Backend",
+                "title": "Node.js",
+                "description": "Hoàn thiện stack với Node.js, xây dựng REST APIs, dịch vụ real-time và tích hợp với MongoDB/PostgreSQL."
+            },
+            "phase6": {
+                "label": "Tiếp theo",
+                "tag": "Đang tiến hành",
+                "title": "DevOps Engineer",
+                "description": "Tập trung hiện tại: nâng cao kỹ năng DevOps—CI/CD, Docker, Kubernetes, hạ tầng cloud, giám sát và tự động hóa."
+            }
+        },
+        "projects": {
+            "title": "Công việc đã chọn",
+            "subtitle": "Một hỗn hợp các thử nghiệm cá nhân và dự án sản xuất được xây dựng cẩn thận.",
+            "searchPlaceholder": "Tìm kiếm dự án...",
+            "all": "Tất cả",
+            "loading": "Đang tải repositories từ GitHub...",
+            "error": {
+                "title": "Không thể tải dự án từ GitHub",
+                "message": "Đang hiển thị dữ liệu dự phòng. Kiểm tra GITHUB_CONFIG trong constants/index.js."
+            },
+            "noResults": {
+                "title": "Không tìm thấy dự án",
+                "message": "Thử một từ khóa hoặc bộ lọc khác."
+            },
+            "cta": {
+                "title": "Có ý tưởng trong đầu?",
+                "subtitle": "Tôi rất muốn nghe về mục tiêu sản phẩm của bạn và khám phá cách chúng ta có thể biến chúng thành hiện thực.",
+                "button": "Hãy nói chuyện"
+            }
+        },
+        "contact": {
+            "title": "Liên hệ",
+            "subtitle": "Cho dù đó là một dự án, hợp tác hay chỉ là một lời chào—tôi rất muốn kết nối.",
+            "contactDetails": "Thông tin liên hệ",
+            "contactDescription": "Cần giúp đỡ hoặc muốn hợp tác? Gửi tin nhắn hoặc liên hệ qua bất kỳ kênh nào bên dưới.",
+            "email": "Email",
+            "location": "Vị trí",
+            "connectSocial": "Kết nối trên mạng xã hội",
+            "form": {
+                "name": "Tên của bạn *",
+                "namePlaceholder": "Nhập tên của bạn",
+                "email": "Email *",
+                "emailPlaceholder": "email@example.com",
+                "subject": "Chủ đề *",
+                "subjectPlaceholder": "Đây là về điều gì?",
+                "message": "Tin nhắn *",
+                "messagePlaceholder": "Cho tôi biết tôi có thể giúp gì...",
+                "send": "Gửi tin nhắn",
+                "success": {
+                    "title": "Tin nhắn đã được gửi!",
+                    "message": "Cảm ơn bạn đã liên hệ—tôi sẽ trả lời sớm nhất có thể."
+                }
+            },
+            "map": {
+                "description": "Bạn có thể nhúng Google Maps hoặc component bản đồ ưa thích của bạn ở đây."
+            }
+        }
+    },
+    "about": {
+        "title": "Giới thiệu về tôi",
+        "subtitle": "Tìm hiểu thêm về hành trình và kỹ năng của tôi",
+        "contactInfo": "Thông tin liên hệ",
+        "downloadCV": "Tải CV",
+        "skills": "Kỹ năng",
+        "experience": {
+            "years": "Năm kinh nghiệm",
+            "projects": "Dự án hoàn thành",
+            "satisfied": "Khách hàng hài lòng"
+        },
+        "journey": {
+            "title": "Hành trình của tôi",
+            "phase1": {
+                "title": "Bắt đầu với Web Development",
+                "description": "Khám phá thế giới lập trình web, học HTML, CSS và JavaScript cơ bản"
+            },
+            "phase2": {
+                "title": "Chuyên sâu React & Node.js",
+                "description": "Tập trung vào React để xây dựng UI và Node.js cho backend development"
+            },
+            "phase3": {
+                "title": "Full Stack Developer",
+                "description": "Hiện tại làm việc với các dự án full-stack, từ thiết kế đến triển khai"
+            }
+        },
+        "description": "Tôi luôn háo hức học hỏi công nghệ mới và áp dụng chúng vào các dự án thực tế. Mục tiêu của tôi là tạo ra những sản phẩm không chỉ đẹp mắt mà còn mang lại giá trị thực sự cho người dùng."
+    },
+    "projects": {
+        "title": "Dự án của tôi",
+        "subtitle": "Khám phá các dự án tôi đã xây dựng với đam mê và sự cống hiến",
+        "searchPlaceholder": "Tìm kiếm dự án...",
+        "noResults": {
+            "title": "Không tìm thấy dự án",
+            "message": "Thử một từ khóa hoặc bộ lọc khác."
+        },
+        "cta": {
+            "title": "Có ý tưởng dự án?",
+            "subtitle": "Hãy liên hệ với tôi để bàn luận về dự án của bạn.",
+            "button": "Liên hệ ngay"
+        }
+    },
+    "contact": {
+        "title": "Liên hệ với tôi",
+        "subtitle": "Hãy kết nối với tôi! Tôi luôn sẵn sàng nghe về các cơ hội và dự án mới",
+        "contactInfo": "Thông tin liên hệ",
+        "contactDescription": "Bạn có câu hỏi hoặc muốn hợp tác? Hãy điền vào form hoặc liên hệ trực tiếp qua các phương thức dưới đây.",
+        "form": {
+            "name": "Tên của bạn *",
+            "namePlaceholder": "Nhập tên của bạn",
+            "email": "Email *",
+            "emailPlaceholder": "email@example.com",
+            "subject": "Chủ đề *",
+            "subjectPlaceholder": "Đây là về điều gì?",
+            "message": "Tin nhắn *",
+            "messagePlaceholder": "Cho tôi biết tôi có thể giúp gì...",
+            "send": "Gửi tin nhắn",
+            "success": {
+                "title": "Cảm ơn bạn đã liên hệ!",
+                "message": "Tôi sẽ phản hồi sớm nhất có thể!"
+            }
+        }
+    },
+    "common": {
+        "code": "Code",
+        "view": "Xem",
+        "demo": "Demo",
+        "loading": "Đang tải...",
+        "error": "Lỗi"
+    }
+}

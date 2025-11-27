@@ -3,6 +3,56 @@
  */
 
 /**
+ * Map GitHub language names to display names
+ * @param {string} language - GitHub language name
+ * @returns {string} - Display name
+ */
+const mapLanguageToDisplayName = (language) => {
+    const languageMap = {
+        'JavaScript': 'JavaScript',
+        'TypeScript': 'TypeScript',
+        'Java': 'Java',
+        'C#': 'C#',
+        'Python': 'Python',
+        'C++': 'C++',
+        'C': 'C',
+        'PHP': 'PHP',
+        'Ruby': 'Ruby',
+        'Go': 'Go',
+        'Rust': 'Rust',
+        'Swift': 'Swift',
+        'Kotlin': 'Kotlin',
+        'Dart': 'Dart',
+        'HTML': 'HTML',
+        'CSS': 'CSS',
+        'SCSS': 'SCSS',
+        'Sass': 'Sass',
+        'Less': 'Less',
+        'Vue': 'Vue.js',
+        'React': 'React',
+        'Angular': 'Angular',
+        'Node.js': 'Node.js',
+        'Express': 'Express',
+        'Next.js': 'Next.js',
+        'Nuxt': 'Nuxt.js',
+        'Svelte': 'Svelte',
+        'Tailwind': 'Tailwind CSS',
+        'Bootstrap': 'Bootstrap',
+        'Material-UI': 'Material UI',
+        'Jest': 'Jest',
+        'Webpack': 'Webpack',
+        'Vite': 'Vite',
+        'Docker': 'Docker',
+        'Kubernetes': 'Kubernetes',
+        'AWS': 'AWS',
+        'Azure': 'Azure',
+        'GCP': 'Google Cloud',
+    };
+
+    return languageMap[language] || language;
+};
+
+/**
  * Transform GitHub repo data to project format
  * @param {Array} repos - Array of GitHub repositories
  * @returns {Array} - Transformed projects array
@@ -11,14 +61,40 @@ export const transformGitHubReposToProjects = (repos) => {
     return repos.map((repo, index) => {
         // Extract language/tags from repo
         const tags = [];
+
+        // Add language as tag (if available)
         if (repo.language) {
-            tags.push(repo.language);
+            // Map language to display name
+            const displayName = mapLanguageToDisplayName(repo.language);
+            // Only add if not already in tags
+            if (!tags.includes(displayName)) {
+                tags.push(displayName);
+            }
         }
 
-        // Add topics as tags (if available)
+        // Add topics as tags (if available) - map them too
         if (repo.topics && repo.topics.length > 0) {
-            tags.push(...repo.topics.slice(0, 3));
+            const mappedTopics = repo.topics
+                .slice(0, 5) // Increase to 5 topics
+                .map(topic => {
+                    // Capitalize topic names and replace hyphens with spaces
+                    return topic
+                        .split('-')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+                })
+                .filter(topic => !tags.includes(topic)); // Avoid duplicates
+
+            tags.push(...mappedTopics);
         }
+
+        // Filter out unwanted tags (customize this list as needed)
+        // Remove generic tags like 'GitHub' if you have more specific tags
+        const excludedTags = ['GitHub', 'github']; // Add tags you want to exclude
+        const filteredTags = tags.filter(tag =>
+            !excludedTags.includes(tag) &&
+            tag.trim() !== '' // Remove empty tags
+        );
 
         // Get image - use GitHub's Open Graph image or default
         // GitHub OG image format: https://opengraph.githubassets.com/{hash}/{owner}/{repo}
@@ -42,7 +118,9 @@ export const transformGitHubReposToProjects = (repos) => {
             title: repo.name.replace(/-/g, ' ').replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
             description: repo.description || 'Không có mô tả',
             image: image,
-            tags: tags.length > 0 ? tags : ['GitHub'],
+            // Use filtered tags or default tag
+            // Change 'Project' to any default tag you prefer, or use empty array []
+            tags: filteredTags.length > 0 ? filteredTags : ['Project'],
             github: repo.html_url,
             demo: repo.homepage || repo.html_url,
             homepage: repo.homepage || null,

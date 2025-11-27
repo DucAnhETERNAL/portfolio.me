@@ -5,6 +5,7 @@ import { SOCIAL_LINKS, ABOUT_INFO, SKILLS, PROJECTS, GITHUB_CONFIG } from '../co
 import useGitHubRepos from '../hooks/useGitHubRepos';
 import useGitHubLanguages from '../hooks/useGitHubLanguages';
 import { transformGitHubReposToProjects, getAllTagsFromProjects } from '../utils/githubUtils';
+import { useI18n } from '../contexts/I18nContext';
 
 // Custom X (Twitter) Icon Component
 const XIcon = ({ className }) => (
@@ -25,6 +26,8 @@ const XIcon = ({ className }) => (
  * Home Page - Single page scroll with all sections
  */
 const Home = () => {
+  const { t } = useI18n();
+
   // Fetch GitHub repos
   const { repos: githubRepos, loading: githubLoading, error: githubError } = useGitHubRepos(
     GITHUB_CONFIG.username,
@@ -113,9 +116,9 @@ const Home = () => {
 
             {/* Main Heading */}
             <h1 className="mb-6 animate-slide-up">
-              <span className="block text-gray-900 dark:text-white mb-2">Hi, I'm</span>
+              <span className="block text-gray-900 dark:text-white mb-2">{t('home.hero.greeting')}</span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-purple-400">
-                Full Stack Developer
+                {t('home.hero.title')}
               </span>
             </h1>
 
@@ -126,7 +129,7 @@ const Home = () => {
                 document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
               }}>
                 <Button variant="primary" size="lg" className="group">
-                  View Projects
+                  {t('home.hero.viewProjects')}
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
@@ -135,7 +138,7 @@ const Home = () => {
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
               }}>
                 <Button variant="outline" size="lg">
-                  Contact Me
+                  {t('home.hero.contactMe')}
                 </Button>
               </a>
             </div>
@@ -194,9 +197,9 @@ const Home = () => {
       <section id="features" className="section-padding bg-gray-50 dark:bg-dark-900 scroll-mt-24">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4">Why work with me?</h2>
+            <h2 className="mb-4">{t('home.features.title')}</h2>
             <p className="text-gray-600 dark:text-dark-300 max-w-2xl mx-auto">
-              I bring a balance of technical depth, product sense, and visual craftsmanship.
+              {t('home.features.subtitle')}
             </p>
           </div>
 
@@ -206,9 +209,9 @@ const Home = () => {
               <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 border border-primary-300 dark:border-primary-800 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl">⚡</span>
               </div>
-              <h3 className="text-xl mb-3">High performance</h3>
+              <h3 className="text-xl mb-3">{t('home.features.performance.title')}</h3>
               <p className="text-gray-600 dark:text-dark-300">
-                I obsess over shipping fast, smooth experiences with thoughtful optimizations.
+                {t('home.features.performance.description')}
               </p>
             </div>
 
@@ -217,9 +220,9 @@ const Home = () => {
               <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 border border-purple-300 dark:border-purple-800 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl">🎨</span>
               </div>
-              <h3 className="text-xl mb-3">Delightful design</h3>
+              <h3 className="text-xl mb-3">{t('home.features.design.title')}</h3>
               <p className="text-gray-600 dark:text-dark-300">
-                Modern, responsive interfaces crafted for clarity and consistency.
+                {t('home.features.design.description')}
               </p>
             </div>
 
@@ -228,9 +231,9 @@ const Home = () => {
               <div className="w-16 h-16 bg-pink-100 dark:bg-pink-900/30 border border-pink-300 dark:border-pink-800 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl">🚀</span>
               </div>
-              <h3 className="text-xl mb-3">Quality code</h3>
+              <h3 className="text-xl mb-3">{t('home.features.quality.title')}</h3>
               <p className="text-gray-600 dark:text-dark-300">
-                Scalable, maintainable codebases built with clean architecture and testing.
+                {t('home.features.quality.description')}
               </p>
             </div>
           </div>
@@ -241,9 +244,9 @@ const Home = () => {
       <section id="about" className="bg-gradient-to-br from-gray-50 to-white dark:from-dark-900 dark:to-dark-950 py-16 border-y border-gray-200 dark:border-dark-800 scroll-mt-24">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <h2 className="mb-4 animate-slide-up">About me</h2>
+            <h2 className="mb-4 animate-slide-up">{t('home.about.title')}</h2>
             <p className="text-lg text-gray-600 dark:text-dark-300 max-w-2xl mx-auto animate-fade-in">
-              A quick snapshot of my journey, values, and capabilities.
+              {t('home.about.subtitle')}
             </p>
           </div>
         </div>
@@ -257,8 +260,17 @@ const Home = () => {
             <div className="space-y-6">
               {/* Profile Image */}
               <div className="relative">
-                <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary-100 to-purple-100 dark:from-primary-900/30 dark:to-purple-900/30 border border-gray-200 dark:border-dark-700 flex items-center justify-center overflow-hidden">
-                  <div className="text-9xl">👨‍💻</div>
+                <div className="rounded-2xl bg-gradient-to-br from-primary-100 to-purple-100 dark:from-primary-900/30 dark:to-purple-900/30 border border-gray-200 dark:border-dark-700 flex items-center justify-center overflow-hidden">
+                  <img
+                    src="/profile.jpg"
+                    alt={ABOUT_INFO.name}
+                    className="w-full h-auto object-contain rounded-2xl"
+                    loading="eager"
+                    onError={(e) => {
+                      console.error('Failed to load /profile.jpg, trying AnhND-DE170755.JPG');
+                      e.target.src = '/AnhND-DE170755.JPG';
+                    }}
+                  />
                 </div>
                 {/* Decorative elements */}
                 <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary-900/20 rounded-full -z-10 blur-xl"></div>
@@ -279,24 +291,22 @@ const Home = () => {
                   {ABOUT_INFO.description}
                 </p>
                 <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
-                  I love experimenting with new technologies and bringing them into production when they
-                  make sense. My goal is to build experiences that feel beautiful, purposeful, and genuinely
-                  useful for people.
+                  {t('home.about.description')}
                 </p>
               </div>
 
               {/* Skills Section */}
               <div>
-                <h3 className="text-2xl font-bold mb-6">Most Used Languages</h3>
+                <h3 className="text-2xl font-bold mb-6">{t('home.about.mostUsedLanguages')}</h3>
                 {languagesLoading ? (
                   <div className="flex items-center justify-center py-8">
                     <Loader2 className="w-6 h-6 text-primary-400 animate-spin mr-2" />
-                    <span className="text-gray-600 dark:text-dark-300">Loading language data from GitHub...</span>
+                    <span className="text-gray-600 dark:text-dark-300">{t('home.about.loadingLanguages')}</span>
                   </div>
                 ) : languagesError ? (
                   <div className="text-center py-8">
                     <p className="text-gray-600 dark:text-dark-300 mb-4">
-                      Unable to fetch data from GitHub. Falling back to sample data.
+                      {t('home.about.unableToFetch')}
                     </p>
                     <div className="space-y-6">
                       {SKILLS.map((skill) => (
@@ -368,10 +378,10 @@ const Home = () => {
         <div className="container-custom relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Career milestones
+              {t('home.timeline.title')}
             </h2>
             <p className="text-gray-600 dark:text-dark-300 text-lg max-w-2xl mx-auto">
-              From the first lines of C to full-stack product builds and a DevOps-focused future.
+              {t('home.timeline.subtitle')}
             </p>
           </div>
 
@@ -394,12 +404,12 @@ const Home = () => {
                 <div className="md:ml-auto md:w-5/12 pl-20 md:pl-0 pt-2">
                   <div className="bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm border border-blue-300 dark:border-blue-800/50 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:shadow-blue-900/20 transition-all duration-300 group-hover:border-blue-600">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-semibold text-blue-400 bg-blue-900/30 px-3 py-1 rounded-full">Phase 1</span>
-                      <span className="text-xs text-gray-500 dark:text-dark-400">Foundations</span>
+                      <span className="text-xs font-semibold text-blue-400 bg-blue-900/30 px-3 py-1 rounded-full">{t('home.timeline.phase1.label')}</span>
+                      <span className="text-xs text-gray-500 dark:text-dark-400">{t('home.timeline.phase1.tag')}</span>
                     </div>
-                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Starting with C</h3>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{t('home.timeline.phase1.title')}</h3>
                     <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
-                      Learned low-level thinking with C, data structures, and algorithms—building the mental model for everything after.
+                      {t('home.timeline.phase1.description')}
                     </p>
                   </div>
                 </div>
@@ -418,12 +428,12 @@ const Home = () => {
                 <div className="md:mr-auto md:w-5/12 pl-20 md:pl-0 pt-2">
                   <div className="bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm border border-orange-300 dark:border-orange-800/50 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:shadow-orange-900/20 transition-all duration-300 group-hover:border-orange-600">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-semibold text-orange-600 dark:text-orange-400 bg-orange-100 dark:bg-orange-900/30 px-3 py-1 rounded-full">Phase 2</span>
-                      <span className="text-xs text-gray-500 dark:text-dark-400">Web development</span>
+                      <span className="text-xs font-semibold text-orange-600 dark:text-orange-400 bg-orange-100 dark:bg-orange-900/30 px-3 py-1 rounded-full">{t('home.timeline.phase2.label')}</span>
+                      <span className="text-xs text-gray-500 dark:text-dark-400">{t('home.timeline.phase2.tag')}</span>
                     </div>
-                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Java JSP/Servlet</h3>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{t('home.timeline.phase2.title')}</h3>
                     <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
-                      Built dynamic applications with Java, JSP, and Servlets, understanding MVC patterns inside the Java EE ecosystem.
+                      {t('home.timeline.phase2.description')}
                     </p>
                   </div>
                 </div>
@@ -442,12 +452,12 @@ const Home = () => {
                 <div className="md:ml-auto md:w-5/12 pl-20 md:pl-0 pt-2">
                   <div className="bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm border border-purple-300 dark:border-purple-800/50 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:shadow-purple-900/20 transition-all duration-300 group-hover:border-purple-600">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-semibold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full">Phase 3</span>
-                      <span className="text-xs text-gray-500 dark:text-dark-400">Enterprise</span>
+                      <span className="text-xs font-semibold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full">{t('home.timeline.phase3.label')}</span>
+                      <span className="text-xs text-gray-500 dark:text-dark-400">{t('home.timeline.phase3.tag')}</span>
                     </div>
-                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">C# / .NET</h3>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{t('home.timeline.phase3.title')}</h3>
                     <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
-                      Dived deep into C#/.NET for enterprise apps, from ASP.NET to service-oriented and microservice architectures.
+                      {t('home.timeline.phase3.description')}
                     </p>
                   </div>
                 </div>
@@ -466,12 +476,12 @@ const Home = () => {
                 <div className="md:mr-auto md:w-5/12 pl-20 md:pl-0 pt-2">
                   <div className="bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm border border-cyan-300 dark:border-cyan-800/50 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:shadow-cyan-900/20 transition-all duration-300 group-hover:border-cyan-600">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 bg-cyan-100 dark:bg-cyan-900/30 px-3 py-1 rounded-full">Phase 4</span>
-                      <span className="text-xs text-gray-500 dark:text-dark-400">Frontend</span>
+                      <span className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 bg-cyan-100 dark:bg-cyan-900/30 px-3 py-1 rounded-full">{t('home.timeline.phase4.label')}</span>
+                      <span className="text-xs text-gray-500 dark:text-dark-400">{t('home.timeline.phase4.tag')}</span>
                     </div>
-                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">React</h3>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{t('home.timeline.phase4.title')}</h3>
                     <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
-                      Switched to modern frontend with React—building SPAs with hooks, context, and a rich ecosystem of tooling.
+                      {t('home.timeline.phase4.description')}
                     </p>
                   </div>
                 </div>
@@ -490,12 +500,12 @@ const Home = () => {
                 <div className="md:ml-auto md:w-5/12 pl-20 md:pl-0 pt-2">
                   <div className="bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm border border-green-300 dark:border-green-800/50 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:shadow-green-900/20 transition-all duration-300 group-hover:border-green-600">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-semibold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-3 py-1 rounded-full">Phase 5</span>
-                      <span className="text-xs text-gray-500 dark:text-dark-400">Backend</span>
+                      <span className="text-xs font-semibold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-3 py-1 rounded-full">{t('home.timeline.phase5.label')}</span>
+                      <span className="text-xs text-gray-500 dark:text-dark-400">{t('home.timeline.phase5.tag')}</span>
                     </div>
-                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Node.js</h3>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{t('home.timeline.phase5.title')}</h3>
                     <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
-                      Completed the stack with Node.js, building REST APIs, real-time services, and integrations with MongoDB/PostgreSQL.
+                      {t('home.timeline.phase5.description')}
                     </p>
                   </div>
                 </div>
@@ -516,12 +526,12 @@ const Home = () => {
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-full blur-2xl"></div>
                     <div className="relative">
                       <div className="flex items-center gap-2 mb-3">
-                        <span className="text-xs font-semibold text-pink-600 dark:text-pink-400 bg-pink-200 dark:bg-pink-900/40 px-3 py-1 rounded-full border border-pink-400 dark:border-pink-700/50">Next</span>
-                        <span className="text-xs text-pink-600 dark:text-pink-300">In progress</span>
+                        <span className="text-xs font-semibold text-pink-600 dark:text-pink-400 bg-pink-200 dark:bg-pink-900/40 px-3 py-1 rounded-full border border-pink-400 dark:border-pink-700/50">{t('home.timeline.phase6.label')}</span>
+                        <span className="text-xs text-pink-600 dark:text-pink-300">{t('home.timeline.phase6.tag')}</span>
                       </div>
-                      <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">DevOps Engineer</h3>
+                      <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{t('home.timeline.phase6.title')}</h3>
                       <p className="text-gray-700 dark:text-dark-200 leading-relaxed">
-                        Current focus: leveling up in DevOps—CI/CD, Docker, Kubernetes, cloud infrastructure, monitoring, and automation.
+                        {t('home.timeline.phase6.description')}
                       </p>
                     </div>
                   </div>
@@ -536,9 +546,9 @@ const Home = () => {
       <section id="projects" className="bg-gradient-to-br from-gray-50 to-white dark:from-dark-900 dark:to-dark-950 py-16 border-y border-gray-200 dark:border-dark-800 scroll-mt-24">
         <div className="container-custom">
           <div className="text-center">
-            <h2 className="mb-4 animate-slide-up">Selected work</h2>
+            <h2 className="mb-4 animate-slide-up">{t('home.projects.title')}</h2>
             <p className="text-lg text-gray-600 dark:text-dark-300 max-w-2xl mx-auto animate-fade-in">
-              A mix of personal experiments and production projects built with care.
+              {t('home.projects.subtitle')}
             </p>
           </div>
         </div>
@@ -553,7 +563,7 @@ const Home = () => {
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-dark-400 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Search projects..."
+                placeholder={t('home.projects.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 bg-white dark:bg-dark-800 border-2 border-gray-300 dark:border-dark-700 text-gray-900 dark:text-white rounded-lg focus:border-primary-500 focus:outline-none transition-colors"
@@ -575,7 +585,7 @@ const Home = () => {
                   }
                 `}
               >
-                {tag === 'all' ? 'All' : tag}
+                {tag === 'all' ? t('home.projects.all') : tag}
               </button>
             ))}
           </div>
@@ -584,15 +594,15 @@ const Home = () => {
           {githubLoading && GITHUB_CONFIG.fetchFromGitHub ? (
             <div className="text-center py-16">
               <Loader2 className="w-12 h-12 text-primary-400 animate-spin mx-auto mb-4" />
-              <p className="text-gray-600 dark:text-dark-300">Loading repositories from GitHub...</p>
+              <p className="text-gray-600 dark:text-dark-300">{t('home.projects.loading')}</p>
             </div>
           ) : githubError && GITHUB_CONFIG.fetchFromGitHub ? (
             <div className="text-center py-16">
               <div className="text-6xl mb-4">⚠️</div>
-              <h3 className="text-2xl mb-2">Unable to load GitHub projects</h3>
+              <h3 className="text-2xl mb-2">{t('home.projects.error.title')}</h3>
               <p className="text-gray-600 dark:text-dark-300 mb-4">{githubError}</p>
               <p className="text-sm text-gray-500 dark:text-dark-400">
-                Showing fallback data instead. Check GITHUB_CONFIG inside constants/index.js.
+                {t('home.projects.error.message')}
               </p>
             </div>
           ) : filteredProjects.length > 0 ? (
@@ -671,9 +681,9 @@ const Home = () => {
           ) : (
             <div className="text-center py-16">
               <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-2xl mb-2">No projects matched</h3>
+              <h3 className="text-2xl mb-2">{t('home.projects.noResults.title')}</h3>
               <p className="text-gray-600 dark:text-dark-300">
-                Try a different keyword or filter.
+                {t('home.projects.noResults.message')}
               </p>
             </div>
           )}
@@ -683,9 +693,9 @@ const Home = () => {
       {/* Projects CTA */}
       <section className="bg-gradient-to-r from-primary-600 to-purple-600 text-white dark:text-white py-16">
         <div className="container-custom text-center">
-          <h2 className="mb-4">Have an idea in mind?</h2>
+          <h2 className="mb-4">{t('home.projects.cta.title')}</h2>
           <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-            I'd love to hear about your product goals and explore how we can bring them to life.
+            {t('home.projects.cta.subtitle')}
           </p>
           <a href="#contact" onClick={(e) => {
             e.preventDefault();
@@ -696,7 +706,7 @@ const Home = () => {
               size="lg"
               className="bg-white text-primary-600 hover:bg-gray-50 dark:hover:bg-dark-50"
             >
-              Let's talk
+              {t('home.projects.cta.button')}
             </Button>
           </a>
         </div>
@@ -706,9 +716,9 @@ const Home = () => {
       <section id="contact" className="bg-gradient-to-br from-gray-50 to-white dark:from-dark-900 dark:to-dark-950 py-16 border-y border-gray-200 dark:border-dark-800 scroll-mt-24">
         <div className="container-custom">
           <div className="text-center">
-            <h2 className="mb-4 animate-slide-up">Get in touch</h2>
+            <h2 className="mb-4 animate-slide-up">{t('home.contact.title')}</h2>
             <p className="text-lg text-gray-600 dark:text-dark-300 max-w-2xl mx-auto animate-fade-in">
-              Whether it's a project, collaboration, or just a hello—I'd love to connect.
+              {t('home.contact.subtitle')}
             </p>
           </div>
         </div>
@@ -721,9 +731,9 @@ const Home = () => {
             {/* Left Column - Contact Info */}
             <div className="space-y-6">
               <div>
-                <h3 className="mb-6">Contact details</h3>
+                <h3 className="mb-6">{t('home.contact.contactDetails')}</h3>
                 <p className="text-gray-600 dark:text-dark-300 mb-8">
-                  Need a hand or want to collaborate? Send a note or reach out through any of the channels below.
+                  {t('home.contact.contactDescription')}
                 </p>
               </div>
 
@@ -735,7 +745,7 @@ const Home = () => {
                       <Mail className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold mb-1">Email</h3>
+                      <h3 className="text-lg font-semibold mb-1">{t('home.contact.email')}</h3>
                       <a
                         href={`mailto:${ABOUT_INFO.email}`}
                         className="text-gray-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
@@ -752,7 +762,7 @@ const Home = () => {
                       <MapPin className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold mb-1">Location</h3>
+                      <h3 className="text-lg font-semibold mb-1">{t('home.contact.location')}</h3>
                       <p className="text-gray-600 dark:text-dark-300">{ABOUT_INFO.location}</p>
                     </div>
                   </div>
@@ -761,7 +771,7 @@ const Home = () => {
 
               {/* Social Links */}
               <div>
-                <h3 className="text-lg font-semibold mb-4">Connect on social</h3>
+                <h3 className="text-lg font-semibold mb-4">{t('home.contact.connectSocial')}</h3>
                 <div className="flex gap-4">
                   {SOCIAL_LINKS.map((social) => {
                     const iconMap = {
@@ -817,7 +827,7 @@ const Home = () => {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-dark-200 mb-2">
-                        Your name *
+                        {t('home.contact.form.name')}
                       </label>
                       <input
                         type="text"
@@ -827,13 +837,13 @@ const Home = () => {
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-2 border-gray-300 dark:border-dark-700 text-gray-900 dark:text-white rounded-lg focus:border-primary-500 focus:outline-none transition-colors"
-                        placeholder="Enter your name"
+                        placeholder={t('home.contact.form.namePlaceholder')}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-dark-200 mb-2">
-                        Email *
+                        {t('home.contact.form.email')}
                       </label>
                       <input
                         type="email"
@@ -843,13 +853,13 @@ const Home = () => {
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-2 border-gray-300 dark:border-dark-700 text-gray-900 dark:text-white rounded-lg focus:border-primary-500 focus:outline-none transition-colors"
-                        placeholder="email@example.com"
+                        placeholder={t('home.contact.form.emailPlaceholder')}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="subject" className="block text-sm font-medium text-dark-200 mb-2">
-                        Subject *
+                        {t('home.contact.form.subject')}
                       </label>
                       <input
                         type="text"
@@ -859,13 +869,13 @@ const Home = () => {
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-2 border-gray-300 dark:border-dark-700 text-gray-900 dark:text-white rounded-lg focus:border-primary-500 focus:outline-none transition-colors"
-                        placeholder="What is this about?"
+                        placeholder={t('home.contact.form.subjectPlaceholder')}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-dark-200 mb-2">
-                        Message *
+                        {t('home.contact.form.message')}
                       </label>
                       <textarea
                         id="message"
@@ -875,7 +885,7 @@ const Home = () => {
                         required
                         rows={6}
                         className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-2 border-gray-300 dark:border-dark-700 text-gray-900 dark:text-white rounded-lg focus:border-primary-500 focus:outline-none transition-colors resize-none"
-                        placeholder="Let me know how I can help..."
+                        placeholder={t('home.contact.form.messagePlaceholder')}
                       />
                     </div>
 
@@ -886,17 +896,17 @@ const Home = () => {
                       size="lg"
                     >
                       <Send className="w-5 h-5 mr-2" />
-                      Send message
+                      {t('home.contact.form.send')}
                     </Button>
                   </form>
                 ) : (
                   <div className="text-center py-12 animate-scale-in">
                     <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
                     <h3 className="text-2xl font-bold mb-2 text-green-400">
-                      Message sent!
+                      {t('home.contact.form.success.title')}
                     </h3>
                     <p className="text-gray-600 dark:text-dark-300">
-                      Thanks for reaching out—I’ll reply as soon as possible.
+                      {t('home.contact.form.success.message')}
                     </p>
                   </div>
                 )}
@@ -913,7 +923,7 @@ const Home = () => {
             <div className="text-center">
               <div className="text-6xl mb-4">🗺️</div>
               <p className="text-gray-600 dark:text-dark-300">
-                You can embed Google Maps or your preferred map component here.
+                {t('home.contact.map.description')}
               </p>
             </div>
           </div>

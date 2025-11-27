@@ -1,0 +1,197 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "projects": "Projects",
+        "contact": "Contact"
+    },
+    "home": {
+        "hero": {
+            "greeting": "Hi, I'm",
+            "title": "Full Stack Developer",
+            "viewProjects": "View Projects",
+            "contactMe": "Contact Me"
+        },
+        "features": {
+            "title": "Why work with me?",
+            "subtitle": "I bring a balance of technical depth, product sense, and visual craftsmanship.",
+            "performance": {
+                "title": "High performance",
+                "description": "I obsess over shipping fast, smooth experiences with thoughtful optimizations."
+            },
+            "design": {
+                "title": "Delightful design",
+                "description": "Modern, responsive interfaces crafted for clarity and consistency."
+            },
+            "quality": {
+                "title": "Quality code",
+                "description": "Scalable, maintainable codebases built with clean architecture and testing."
+            }
+        },
+        "about": {
+            "title": "About me",
+            "subtitle": "A quick snapshot of my journey, values, and capabilities.",
+            "mostUsedLanguages": "Most Used Languages",
+            "loadingLanguages": "Loading language data from GitHub...",
+            "unableToFetch": "Unable to fetch data from GitHub. Falling back to sample data.",
+            "description": "I love experimenting with new technologies and bringing them into production when they make sense. My goal is to build experiences that feel beautiful, purposeful, and genuinely useful for people."
+        },
+        "timeline": {
+            "title": "Career milestones",
+            "subtitle": "From the first lines of C to full-stack product builds and a DevOps-focused future.",
+            "phase1": {
+                "label": "Phase 1",
+                "tag": "Foundations",
+                "title": "Starting with C",
+                "description": "Learned low-level thinking with C, data structures, and algorithms—building the mental model for everything after."
+            },
+            "phase2": {
+                "label": "Phase 2",
+                "tag": "Web development",
+                "title": "Java JSP/Servlet",
+                "description": "Built dynamic applications with Java, JSP, and Servlets, understanding MVC patterns inside the Java EE ecosystem."
+            },
+            "phase3": {
+                "label": "Phase 3",
+                "tag": "Enterprise",
+                "title": "C# / .NET",
+                "description": "Dived deep into C#/.NET for enterprise apps, from ASP.NET to service-oriented and microservice architectures."
+            },
+            "phase4": {
+                "label": "Phase 4",
+                "tag": "Frontend",
+                "title": "React",
+                "description": "Switched to modern frontend with React—building SPAs with hooks, context, and a rich ecosystem of tooling."
+            },
+            "phase5": {
+                "label": "Phase 5",
+                "tag": "Backend",
+                "title": "Node.js",
+                "description": "Completed the stack with Node.js, building REST APIs, real-time services, and integrations with MongoDB/PostgreSQL."
+            },
+            "phase6": {
+                "label": "Next",
+                "tag": "In progress",
+                "title": "DevOps Engineer",
+                "description": "Current focus: leveling up in DevOps—CI/CD, Docker, Kubernetes, cloud infrastructure, monitoring, and automation."
+            }
+        },
+        "projects": {
+            "title": "Selected work",
+            "subtitle": "A mix of personal experiments and production projects built with care.",
+            "searchPlaceholder": "Search projects...",
+            "all": "All",
+            "loading": "Loading repositories from GitHub...",
+            "error": {
+                "title": "Unable to load GitHub projects",
+                "message": "Showing fallback data instead. Check GITHUB_CONFIG inside constants/index.js."
+            },
+            "noResults": {
+                "title": "No projects matched",
+                "message": "Try a different keyword or filter."
+            },
+            "cta": {
+                "title": "Have an idea in mind?",
+                "subtitle": "I'd love to hear about your product goals and explore how we can bring them to life.",
+                "button": "Let's talk"
+            }
+        },
+        "contact": {
+            "title": "Get in touch",
+            "subtitle": "Whether it's a project, collaboration, or just a hello—I'd love to connect.",
+            "contactDetails": "Contact details",
+            "contactDescription": "Need a hand or want to collaborate? Send a note or reach out through any of the channels below.",
+            "email": "Email",
+            "location": "Location",
+            "connectSocial": "Connect on social",
+            "form": {
+                "name": "Your name *",
+                "namePlaceholder": "Enter your name",
+                "email": "Email *",
+                "emailPlaceholder": "email@example.com",
+                "subject": "Subject *",
+                "subjectPlaceholder": "What is this about?",
+                "message": "Message *",
+                "messagePlaceholder": "Let me know how I can help...",
+                "send": "Send message",
+                "success": {
+                    "title": "Message sent!",
+                    "message": "Thanks for reaching out—I'll reply as soon as possible."
+                }
+            },
+            "map": {
+                "description": "You can embed Google Maps or your preferred map component here."
+            }
+        }
+    },
+    "about": {
+        "title": "About me",
+        "subtitle": "Learn more about my journey and skills",
+        "contactInfo": "Contact information",
+        "downloadCV": "Download CV",
+        "skills": "Skills",
+        "experience": {
+            "years": "Years of experience",
+            "projects": "Projects completed",
+            "satisfied": "Satisfied clients"
+        },
+        "journey": {
+            "title": "My journey",
+            "phase1": {
+                "title": "Starting with Web Development",
+                "description": "Exploring the world of web programming, learning basic HTML, CSS and JavaScript"
+            },
+            "phase2": {
+                "title": "Deep dive into React & Node.js",
+                "description": "Focusing on React to build UI and Node.js for backend development"
+            },
+            "phase3": {
+                "title": "Full Stack Developer",
+                "description": "Currently working on full-stack projects, from design to deployment"
+            }
+        },
+        "description": "I'm always eager to learn new technologies and apply them to real projects. My goal is to create products that are not only beautiful but also bring real value to users."
+    },
+    "projects": {
+        "title": "My Projects",
+        "subtitle": "Explore the projects I've built with passion and dedication",
+        "searchPlaceholder": "Search projects...",
+        "noResults": {
+            "title": "No projects found",
+            "message": "Try a different keyword or filter."
+        },
+        "cta": {
+            "title": "Have a project idea?",
+            "subtitle": "Contact me to discuss your project.",
+            "button": "Contact now"
+        }
+    },
+    "contact": {
+        "title": "Contact me",
+        "subtitle": "Let's connect! I'm always ready to hear about new opportunities and projects",
+        "contactInfo": "Contact information",
+        "contactDescription": "Have a question or want to collaborate? Fill out the form or contact directly through the methods below.",
+        "form": {
+            "name": "Your name *",
+            "namePlaceholder": "Enter your name",
+            "email": "Email *",
+            "emailPlaceholder": "email@example.com",
+            "subject": "Subject *",
+            "subjectPlaceholder": "What is this about?",
+            "message": "Message *",
+            "messagePlaceholder": "Let me know how I can help...",
+            "send": "Send message",
+            "success": {
+                "title": "Thank you for contacting!",
+                "message": "I will respond as soon as possible!"
+            }
+        }
+    },
+    "common": {
+        "code": "Code",
+        "view": "View",
+        "demo": "Demo",
+        "loading": "Loading...",
+        "error": "Error"
+    }
+}
