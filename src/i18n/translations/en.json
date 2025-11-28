@@ -34,7 +34,7 @@
             "mostUsedLanguages": "Most Used Languages",
             "loadingLanguages": "Loading language data from GitHub...",
             "unableToFetch": "Unable to fetch data from GitHub. Falling back to sample data.",
-            "description": "I love experimenting with new technologies and bringing them into production when they make sense. My goal is to build experiences that feel beautiful, purposeful, and genuinely useful for people."
+            "description": "Hello! I'm a developer passionate about technology and always seeking new challenges. With experience in building modern web applications, I specialize in React, Node.js, and the latest web technologies. I love experimenting with new technologies and bringing them into production when they make sense. My goal is to build experiences that feel beautiful, purposeful, and genuinely useful for people."
         },
         "timeline": {
             "title": "Career milestones",
@@ -77,7 +77,7 @@
             }
         },
         "projects": {
-            "title": "Selected work",
+            "title": "Project",
             "subtitle": "A mix of personal experiments and production projects built with care.",
             "searchPlaceholder": "Search projects...",
             "all": "All",

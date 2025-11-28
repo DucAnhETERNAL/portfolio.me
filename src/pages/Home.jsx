@@ -287,9 +287,6 @@ const Home = () => {
                 <p className="text-xl text-primary-400 font-semibold mb-4">
                   {ABOUT_INFO.title}
                 </p>
-                <p className="text-gray-600 dark:text-dark-300 leading-relaxed mb-4">
-                  {ABOUT_INFO.description}
-                </p>
                 <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
                   {t('home.about.description')}
                 </p>
@@ -737,38 +734,6 @@ const Home = () => {
                 </p>
               </div>
 
-              {/* Contact Cards */}
-              <div className="space-y-4">
-                <Card hover={false} className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900/30 border border-primary-300 dark:border-primary-800 flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold mb-1">{t('home.contact.email')}</h3>
-                      <a
-                        href={`mailto:${ABOUT_INFO.email}`}
-                        className="text-gray-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                      >
-                        {ABOUT_INFO.email}
-                      </a>
-                    </div>
-                  </div>
-                </Card>
-
-                <Card hover={false} className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 border border-purple-300 dark:border-purple-800 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold mb-1">{t('home.contact.location')}</h3>
-                      <p className="text-gray-600 dark:text-dark-300">{ABOUT_INFO.location}</p>
-                    </div>
-                  </div>
-                </Card>
-              </div>
-
               {/* Social Links */}
               <div>
                 <h3 className="text-lg font-semibold mb-4">{t('home.contact.connectSocial')}</h3>
@@ -812,17 +777,27 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* Illustration */}
-              <div className="hidden lg:block mt-12">
-                <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary-100 to-purple-100 dark:from-primary-900/30 dark:to-purple-900/30 border border-gray-200 dark:border-dark-700 flex items-center justify-center">
-                  <div className="text-9xl">📮</div>
+              {/* Map */}
+              <div className="mt-8">
+                <div className="rounded-2xl overflow-hidden shadow-lg">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d501726.4604554043!2d106.41502449999999!3d10.754792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529292e8d3dd1%3A0xf15f5aad773c112b!2zSOG7kyBDaMOtIE1pbmgsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1234567890123!5m2!1svi!2s"
+                    width="100%"
+                    height="400"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Ho Chi Minh City Map"
+                    className="w-full"
+                  ></iframe>
                 </div>
               </div>
             </div>
 
             {/* Right Column - Contact Form */}
             <div>
-              <Card hover={false} className="p-8">
+              <Card hover={false} className="p-8 border-0">
                 {!isSubmitted ? (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
@@ -836,7 +811,7 @@ const Home = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-2 border-gray-300 dark:border-dark-700 text-gray-900 dark:text-white rounded-lg focus:border-primary-500 focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-0 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none transition-all"
                         placeholder={t('home.contact.form.namePlaceholder')}
                       />
                     </div>
@@ -852,7 +827,7 @@ const Home = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-2 border-gray-300 dark:border-dark-700 text-gray-900 dark:text-white rounded-lg focus:border-primary-500 focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-0 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none transition-all"
                         placeholder={t('home.contact.form.emailPlaceholder')}
                       />
                     </div>
@@ -868,7 +843,7 @@ const Home = () => {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-2 border-gray-300 dark:border-dark-700 text-gray-900 dark:text-white rounded-lg focus:border-primary-500 focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-0 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none transition-all"
                         placeholder={t('home.contact.form.subjectPlaceholder')}
                       />
                     </div>
@@ -884,7 +859,7 @@ const Home = () => {
                         onChange={handleChange}
                         required
                         rows={6}
-                        className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-2 border-gray-300 dark:border-dark-700 text-gray-900 dark:text-white rounded-lg focus:border-primary-500 focus:outline-none transition-colors resize-none"
+                        className="w-full px-4 py-3 bg-white dark:bg-dark-900 border-0 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none transition-all resize-none"
                         placeholder={t('home.contact.form.messagePlaceholder')}
                       />
                     </div>
@@ -916,19 +891,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Map Section (Optional) */}
-      <section className="bg-white dark:bg-dark-900 py-16">
-        <div className="container-custom">
-          <div className="bg-gradient-to-br from-primary-100 to-purple-100 dark:from-primary-900/20 dark:to-purple-900/20 border border-gray-200 dark:border-dark-700 rounded-2xl h-96 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-6xl mb-4">🗺️</div>
-              <p className="text-gray-600 dark:text-dark-300">
-                {t('home.contact.map.description')}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
     </div>
   );
