@@ -384,8 +384,8 @@ const Home = () => {
 
           <div className="max-w-4xl mx-auto relative">
             {/* Timeline Line */}
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-600 via-orange-600 via-purple-600 via-cyan-600 via-green-600 to-pink-600 opacity-30 rounded-full"></div>
-            <div className="md:hidden absolute left-8 w-1 h-full bg-gradient-to-b from-blue-600 via-orange-600 via-purple-600 via-cyan-600 via-green-600 to-pink-600 opacity-30 rounded-full"></div>
+            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-600 via-orange-600 via-purple-600 via-cyan-600 via-green-600 via-pink-600 to-red-600 opacity-30 rounded-full"></div>
+            <div className="md:hidden absolute left-8 w-1 h-full bg-gradient-to-b from-blue-600 via-orange-600 via-purple-600 via-cyan-600 via-green-600 via-pink-600 to-red-600 opacity-30 rounded-full"></div>
 
             <div className="space-y-12 relative z-10">
               {/* Timeline Item 1 - C */}
@@ -508,29 +508,53 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* Timeline Item 6 - DevOps (Goal) */}
+              {/* Timeline Item 6 - Cyber Security (Current) */}
               <div className="relative flex flex-col md:flex-row items-start gap-6 group">
                 <div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 -translate-y-2">
                   <div className="relative">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 via-purple-600 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-pink-900/50 group-hover:scale-110 transition-transform duration-300 border-4 border-white dark:border-dark-900 animate-pulse">
-                      <span className="text-xl font-bold text-white">🚀</span>
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 via-orange-600 to-yellow-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-red-900/50 group-hover:scale-110 transition-transform duration-300 border-4 border-white dark:border-dark-900 animate-pulse">
+                      <span className="text-xl font-bold text-white">🔒</span>
                     </div>
-                    <div className="absolute inset-0 rounded-full bg-pink-400 animate-ping opacity-30" style={{ animationDelay: '1s' }}></div>
+                    <div className="absolute inset-0 rounded-full bg-red-400 animate-ping opacity-30" style={{ animationDelay: '1s' }}></div>
                   </div>
                 </div>
                 <div className="md:mr-auto md:w-5/12 pl-20 md:pl-0 pt-2">
-                  <div className="bg-gradient-to-br from-pink-100/80 via-purple-100/80 to-blue-100/80 dark:from-pink-900/20 dark:via-purple-900/20 dark:to-blue-900/20 backdrop-blur-sm border-2 border-pink-300 dark:border-pink-800/70 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:shadow-pink-900/30 transition-all duration-300 group-hover:border-pink-500 group-hover:scale-105 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-pink-500/10 to-purple-500/10 rounded-full blur-2xl"></div>
+                  <div className="bg-gradient-to-br from-red-100/80 via-orange-100/80 to-yellow-100/80 dark:from-red-900/20 dark:via-orange-900/20 dark:to-yellow-900/20 backdrop-blur-sm border-2 border-red-300 dark:border-red-800/70 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:shadow-red-900/30 transition-all duration-300 group-hover:border-red-500 group-hover:scale-105 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-full blur-2xl"></div>
                     <div className="relative">
                       <div className="flex items-center gap-2 mb-3">
-                        <span className="text-xs font-semibold text-pink-600 dark:text-pink-400 bg-pink-200 dark:bg-pink-900/40 px-3 py-1 rounded-full border border-pink-400 dark:border-pink-700/50">{t('home.timeline.phase6.label')}</span>
-                        <span className="text-xs text-pink-600 dark:text-pink-300">{t('home.timeline.phase6.tag')}</span>
+                        <span className="text-xs font-semibold text-red-600 dark:text-red-400 bg-red-200 dark:bg-red-900/40 px-3 py-1 rounded-full border border-red-400 dark:border-red-700/50">{t('home.timeline.phase6.label')}</span>
+                        <span className="text-xs text-red-600 dark:text-red-300">{t('home.timeline.phase6.tag')}</span>
                       </div>
                       <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{t('home.timeline.phase6.title')}</h3>
                       <p className="text-gray-700 dark:text-dark-200 leading-relaxed">
                         {t('home.timeline.phase6.description')}
                       </p>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Timeline Item 7 - DevSecOps (Goal) */}
+              <div className="relative flex flex-col md:flex-row items-start gap-6 group">
+                <div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 -translate-y-2">
+                  <div className="relative">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 via-purple-600 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-pink-900/50 group-hover:scale-110 transition-transform duration-300 border-4 border-white dark:border-dark-900">
+                      <span className="text-xl font-bold text-white">🚀</span>
+                    </div>
+                    <div className="absolute inset-0 rounded-full bg-pink-400 animate-ping opacity-20" style={{ animationDelay: '1.2s' }}></div>
+                  </div>
+                </div>
+                <div className="md:ml-auto md:w-5/12 pl-20 md:pl-0 pt-2">
+                  <div className="bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm border border-pink-300 dark:border-pink-800/50 rounded-xl p-6 shadow-xl hover:shadow-2xl hover:shadow-pink-900/20 transition-all duration-300 group-hover:border-pink-600">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-semibold text-pink-600 dark:text-pink-400 bg-pink-100 dark:bg-pink-900/30 px-3 py-1 rounded-full">{t('home.timeline.phase7.label')}</span>
+                      <span className="text-xs text-gray-500 dark:text-dark-400">{t('home.timeline.phase7.tag')}</span>
+                    </div>
+                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{t('home.timeline.phase7.title')}</h3>
+                    <p className="text-gray-600 dark:text-dark-300 leading-relaxed">
+                      {t('home.timeline.phase7.description')}
+                    </p>
                   </div>
                 </div>
               </div>

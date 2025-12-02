@@ -70,10 +70,16 @@
                 "description": "Completed the stack with Node.js, building REST APIs, real-time services, and integrations with MongoDB/PostgreSQL."
             },
             "phase6": {
-                "label": "Next",
+                "label": "Phase 6",
                 "tag": "In progress",
-                "title": "DevOps Engineer",
-                "description": "Current focus: leveling up in DevOps—CI/CD, Docker, Kubernetes, cloud infrastructure, monitoring, and automation."
+                "title": "Cyber Security",
+                "description": "Current focus: developing cybersecurity skills—ethical hacking, penetration testing, network security, security protocols, and threat analysis."
+            },
+            "phase7": {
+                "label": "Next",
+                "tag": "Goal",
+                "title": "DevSecOps Engineer",
+                "description": "Next learning path: combining DevOps and Security—CI/CD with security integration, Docker/Kubernetes security, cloud infrastructure security, security monitoring, and automation."
             }
         },
         "projects": {

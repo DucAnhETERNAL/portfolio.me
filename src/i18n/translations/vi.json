@@ -70,10 +70,16 @@
                 "description": "Hoàn thiện stack với Node.js, xây dựng REST APIs, dịch vụ real-time và tích hợp với MongoDB/PostgreSQL."
             },
             "phase6": {
-                "label": "Tiếp theo",
+                "label": "Giai đoạn 6",
                 "tag": "Đang tiến hành",
-                "title": "DevOps Engineer",
-                "description": "Tập trung hiện tại: nâng cao kỹ năng DevOps—CI/CD, Docker, Kubernetes, hạ tầng cloud, giám sát và tự động hóa."
+                "title": "Cyber Security",
+                "description": "Tập trung hiện tại: phát triển kỹ năng bảo mật mạng—ethical hacking, penetration testing, network security, security protocols và threat analysis."
+            },
+            "phase7": {
+                "label": "Tiếp theo",
+                "tag": "Mục tiêu",
+                "title": "DevSecOps Engineer",
+                "description": "Lộ trình tiếp theo: kết hợp DevOps và Security—CI/CD với security integration, Docker/Kubernetes security, cloud infrastructure security, security monitoring và automation."
             }
         },
         "projects": {
